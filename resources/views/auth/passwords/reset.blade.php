@@ -14,36 +14,12 @@
         <form action="{{ route('password.update') }}" method="POST">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
-            
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required autofocus>
-            </div>
-
-            @if ($errors->has('email'))
-                <span class="text-danger">{{ $errors->first('email') }}</span>
-            @endif
-
-            <div class="form-group mt-3">
-                <label for="password">New Password</label>
-                <input type="password" name="password" id="password" class="form-control" required>
-            </div>
-
-            @if ($errors->has('password'))
-                <span class="text-danger">{{ $errors->first('password') }}</span>
-            @endif
-
-            <div class="form-group mt-3">
-                <label for="password_confirmation">Confirm Password</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
-            </div>
-
-            @if ($errors->has('password_confirmation'))
-                <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
-            @endif
-
-            <button type="submit" class="btn btn-primary mt-3">Reset Password</button>
+            <input type="email" name="email" value="{{ $email ?? old('email') }}" required autofocus>
+            <input type="password" name="password" required placeholder="New Password">
+            <input type="password" name="password_confirmation" required placeholder="Confirm Password">
+            <button type="submit">Reset Password</button>
         </form>
+        
     </div>
 </body>
 </html>

@@ -20,17 +20,10 @@
         {{-- Form untuk memasukkan email --}}
         <form action="{{ route('password.email') }}" method="POST">
             @csrf
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" class="form-control" required autofocus>
-            </div>
-
-            @if ($errors->has('email'))
-                <span class="text-danger">{{ $errors->first('email') }}</span>
-            @endif
-
-            <button type="submit" class="btn btn-primary mt-3">Send Password Reset Link</button>
+            <input type="email" name="email" placeholder="Enter your email">
+            <button type="submit">Send Reset Link</button>
         </form>
+        
     </div>
 </body>
 </html>
