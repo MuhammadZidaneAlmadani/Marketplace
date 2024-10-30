@@ -114,11 +114,7 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Password" required>
             </div>
-
-            <div class="form-group" style="text-align: right;">
-                <a href="{{ route('password.request') }}">Forgot Password?</a>
-            </div>
-
+            
             <button type="submit" class="btn-login">Sign in</button>
         </form>
     </div>
