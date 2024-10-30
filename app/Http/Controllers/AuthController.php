@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     /**
      * Tampilkan form login.
@@ -29,20 +29,20 @@ class LoginController extends Controller
     {
         // Validasi input dari form login
         $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'username' => 'required|string', // Mengganti 'username' dengan 'string'
+            'password' => 'required|string',
         ]);
 
-        // Coba autentikasi pengguna
-        if (Auth::attempt($request->only('email', 'password'))) {
+        // Coba autentikasi pengguna berdasarkan username
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             $request->session()->regenerate();
 
             return redirect()->intended('/home'); // Ganti '/home' dengan route tujuan setelah login
         }
 
-        // Jika autentikasi gagal, kembalikan pesan error
+        // Jika autentikasi gagal, kembalikan pesan error untuk 'username'
         throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')],
+            'username' => [trans('auth.failed')],
         ]);
     }
 
