@@ -1,2 +1,7 @@
 *
 !.gitignore
+if ($request->hasFile('foto_utama')) {
+    $path = $request->file('foto_utama')->store('uploads', 'public');
+    $market->foto_utama = $path;
+}
+

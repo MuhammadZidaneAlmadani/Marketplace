@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Market;
 use Illuminate\Http\Request;
+use App\Models\Market;
 
 class MarketController extends Controller
 {
     public function index()
     {
-        $markets = Market::all(); // Menampilkan semua data pasar
-        return view('markets.form', compact('markets')); // Kirim data pasar ke view untuk ditampilkan sebagai daftar
+        $markets = Market::all();
+        return view('markets.index', compact('markets'));
     }
 
     public function create()
     {
-        return view('markets.form'); // Menggunakan form.blade.php untuk form create
+        return view('markets.create');
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        // Validasi input termasuk file gambar
+        $data = $request->validate([
             'nama' => 'required|string|max:255',
             'lokasi' => 'required|string',
             'deskripsi' => 'nullable|string',
@@ -30,18 +31,38 @@ class MarketController extends Controller
             'foto_galeri' => 'nullable|image',
         ]);
 
-        Market::create($validatedData); // Menyimpan data pasar ke database
-        return redirect()->route('markets.index')->with('success', 'Pasar berhasil dibuat.');
+        // Menyimpan file foto utama jika ada
+        if ($request->hasFile('foto_utama')) {
+            $data['foto_utama'] = $request->file('foto_utama')->store('uploads', 'public'); // Path akan disimpan di $data
+        }
+
+        // Menyimpan file foto galeri jika ada
+        if ($request->hasFile('foto_galeri')) {
+            $data['foto_galeri'] = $request->file('foto_galeri')->store('uploads', 'public'); // Path akan disimpan di $data
+        }
+
+        // Simpan data ke database
+        Market::create($data);
+
+        return redirect()->route('markets.index');
     }
 
-    public function edit(Market $market)
+    public function show($id)
     {
-        return view('markets.form', compact('market')); // Menggunakan form.blade.php untuk form edit dengan data pasar
+        $market = Market::findOrFail($id);
+        return view('markets.show', compact('market'));
     }
 
-    public function update(Request $request, Market $market)
+    public function edit($id)
     {
-        $validatedData = $request->validate([
+        $market = Market::findOrFail($id);
+        return view('markets.edit', compact('market'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validasi input termasuk file gambar
+        $data = $request->validate([
             'nama' => 'required|string|max:255',
             'lokasi' => 'required|string',
             'deskripsi' => 'nullable|string',
@@ -51,19 +72,28 @@ class MarketController extends Controller
             'foto_galeri' => 'nullable|image',
         ]);
 
-        $market->update($validatedData); // Memperbarui data pasar
-        return redirect()->route('markets.index')->with('success', 'Pasar berhasil diperbarui.');
+        $market = Market::findOrFail($id);
+
+        // Menyimpan file foto utama jika ada
+        if ($request->hasFile('foto_utama')) {
+            $data['foto_utama'] = $request->file('foto_utama')->store('uploads', 'public');
+        }
+
+        // Menyimpan file foto galeri jika ada
+        if ($request->hasFile('foto_galeri')) {
+            $data['foto_galeri'] = $request->file('foto_galeri')->store('uploads', 'public');
+        }
+
+        // Update data di database
+        $market->update($data);
+
+        return redirect()->route('markets.index');
     }
 
-    public function show(Market $market)
+    public function destroy($id)
     {
-        $isView = true; // Menandakan bahwa ini adalah tampilan detail (read-only)
-        return view('markets.form', compact('market', 'isView')); // Menampilkan detail pasar menggunakan form.blade.php
-    }
-
-    public function destroy(Market $market)
-    {
-        $market->delete(); // Menghapus data pasar
-        return redirect()->route('markets.index')->with('success', 'Pasar berhasil dihapus.');
+        $market = Market::findOrFail($id);
+        $market->delete();
+        return redirect()->route('markets.index');
     }
 }
