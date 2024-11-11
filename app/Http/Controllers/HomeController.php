@@ -15,8 +15,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // Pastikan middleware 'auth' tersedia di Kernel.php
-        $this->middleware('auth'); // Menggunakan middleware auth
+        // Terapkan middleware 'auth' jika ingin mencoba tanpa di route
+        //$this->middleware('auth'); // Bisa dihapus jika middleware sudah di route
     }
 
     /**
@@ -33,6 +33,6 @@ class HomeController extends Controller
         }
 
         // Jika tidak, redirect ke halaman login atau halaman lain
-        return redirect()->route('login'); // Atau sesuaikan dengan rute yang ada
+        return redirect()->route('login'); // Sesuaikan dengan rute yang ada
     }
 }

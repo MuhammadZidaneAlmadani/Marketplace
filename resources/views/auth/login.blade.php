@@ -6,7 +6,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-        /* Styling untuk membuat tampilan login sesuai gambar */
+        /* Styling untuk membuat tampilan login */
         body {
             display: flex;
             align-items: center;
@@ -29,15 +29,15 @@
 
         .login-container img {
             width: 80px;
-            margin-bottom: 0.1rem; /* Mengurangi jarak antara logo dan teks */
+            margin-bottom: 0.1rem;
         }
 
         .disperindag-title {
             font-weight: bold;
             font-size: 28px;
-            background: linear-gradient(90deg, #004d00, black); /* Gradien warna hijau ke hitam */
+            background: linear-gradient(90deg, #004d00, black);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; /* Membuat teks transparan agar gradien terlihat */
+            -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
             letter-spacing: 2px;
             font-family: Arial, sans-serif;
@@ -94,6 +94,16 @@
         .btn-login:hover {
             background-color: #002244;
         }
+
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: 0.75rem 1.25rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -103,18 +113,29 @@
         <h1 class="disperindag-title">DISPERINDAG</h1>
         <h2>Login</h2>
 
+        <!-- Display error messages -->
+        @if ($errors->any())
+            <div class="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Username" required autofocus>
+                <input type="text" name="username" id="username" placeholder="Username" required autofocus value="{{ old('username') }}">
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Password" required>
             </div>
-            
+
             <button type="submit" class="btn-login">Sign in</button>
         </form>
     </div>

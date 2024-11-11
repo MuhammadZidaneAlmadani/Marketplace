@@ -10,12 +10,12 @@ class MarketController extends Controller
     public function index()
     {
         $markets = Market::all(); // Menampilkan semua data pasar
-        return view('markets.index', compact('markets'));
+        return view('markets.form', compact('markets')); // Kirim data pasar ke view untuk ditampilkan sebagai daftar
     }
 
     public function create()
     {
-        return view('markets.create'); // Menampilkan form untuk membuat data pasar baru
+        return view('markets.form'); // Menggunakan form.blade.php untuk form create
     }
 
     public function store(Request $request)
@@ -36,7 +36,7 @@ class MarketController extends Controller
 
     public function edit(Market $market)
     {
-        return view('markets.edit', compact('market')); // Menampilkan form untuk edit data pasar
+        return view('markets.form', compact('market')); // Menggunakan form.blade.php untuk form edit dengan data pasar
     }
 
     public function update(Request $request, Market $market)
@@ -53,6 +53,12 @@ class MarketController extends Controller
 
         $market->update($validatedData); // Memperbarui data pasar
         return redirect()->route('markets.index')->with('success', 'Pasar berhasil diperbarui.');
+    }
+
+    public function show(Market $market)
+    {
+        $isView = true; // Menandakan bahwa ini adalah tampilan detail (read-only)
+        return view('markets.form', compact('market', 'isView')); // Menampilkan detail pasar menggunakan form.blade.php
     }
 
     public function destroy(Market $market)
