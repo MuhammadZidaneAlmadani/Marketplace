@@ -18,7 +18,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/dasboard">Beranda</a></li>
                         <li class="nav-item"><a class="nav-link" href="/markets">Pasar</a></li>
                         <li class="nav-item"><a class="nav-link" href="/informasi">Informasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="/layanan">Layanan</a></li>
