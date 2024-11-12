@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login - Disperindag</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-        /* Styling untuk membuat tampilan login */
         body {
             display: flex;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            align-items: center;
+            height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
         }
 
         .login-container {
-            background-color: white;
+            background-color: #ffffff;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 400px;
             text-align: center;
@@ -29,22 +28,13 @@
 
         .login-container img {
             width: 80px;
-            margin-bottom: 0.1rem;
-        }
-
-        .disperindag-title {
-            font-weight: bold;
-            font-size: 28px;
-            background: linear-gradient(90deg, #004d00, black);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
-            letter-spacing: 2px;
-            font-family: Arial, sans-serif;
         }
 
-        .login-container h2 {
+        .login-container h1 {
             font-size: 24px;
+            color: #003366;
+            font-weight: bold;
             margin-bottom: 1rem;
         }
 
@@ -55,8 +45,8 @@
 
         .form-group label {
             font-weight: bold;
-            font-size: 14px;
             color: #333;
+            font-size: 14px;
         }
 
         .form-group input {
@@ -66,17 +56,6 @@
             margin-top: 0.3rem;
             border: 1px solid #ccc;
             border-radius: 5px;
-            outline: none;
-        }
-
-        .form-group a {
-            font-size: 12px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .form-group a:hover {
-            text-decoration: underline;
         }
 
         .btn-login {
@@ -108,12 +87,9 @@
 </head>
 <body>
     <div class="login-container">
-        <!-- Logo Disperindag -->
         <img src="{{ asset('images/logo_disperindag.jpeg') }}" alt="Disperindag Logo">
-        <h1 class="disperindag-title">DISPERINDAG</h1>
-        <h2>Login</h2>
+        <h1>DISPERINDAG</h1>
 
-        <!-- Display error messages -->
         @if ($errors->any())
             <div class="alert">
                 <ul>
@@ -128,7 +104,7 @@
             @csrf
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Username" required autofocus value="{{ old('username') }}">
+                <input type="text" name="username" id="username" placeholder="Username" value="{{ old('username') }}" required>
             </div>
 
             <div class="form-group">
@@ -136,7 +112,7 @@
                 <input type="password" name="password" id="password" placeholder="Password" required>
             </div>
 
-            <button type="submit" class="btn-login">Sign in</button>
+            <button type="submit" class="btn-login">Login</button>
         </form>
     </div>
 </body>

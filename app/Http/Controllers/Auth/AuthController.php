@@ -2,61 +2,35 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
-    /**
-     * Menampilkan form login
-     */
+    // Menampilkan form login
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.login'); // Pastikan file Blade `resources/views/auth/login.blade.php` ada
     }
 
-    /**
-     * Proses login pengguna
-     */
+    // Memproses login
     public function login(Request $request)
     {
-        // Validasi inputan untuk memastikan username dan password disediakan
-        $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
+        $credentials = $request->only('username', 'password');
 
-        // Cek apakah kredensial pengguna cocok dengan yang ada di sistem
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            // Regenerasi session untuk keamanan ekstra
-            $request->session()->regenerate();
-
-            // Redirect ke halaman Dashboard jika autentikasi berhasil
-            return redirect()->intended('/dashboard'); // Sesuaikan route dengan kebutuhan
+        if (auth()->attempt($credentials)) {
+            return redirect()->route('dashboard'); // Arahkan ke dashboard
         }
 
-        // Jika login gagal, kembalikan pengguna ke halaman login dengan pesan error
-        return back()->withErrors([
-            'username' => 'Login gagal. Pastikan username dan password benar.',
-        ])->withInput(); // Mengembalikan input username untuk kenyamanan pengguna
+        return redirect()->route('login')->withErrors([
+            'username' => 'Username atau password salah.',
+        ]);
     }
 
-    /**
-     * Proses logout pengguna
-     */
-    public function logout(Request $request)
+    // Logout dan arahkan ke halaman login
+    public function logout()
     {
-        // Logout pengguna dari session
-        Auth::logout();
-
-        // Invalidasi session untuk keamanan
-        $request->session()->invalidate();
-
-        // Regenerasi token CSRF untuk keamanan
-        $request->session()->regenerateToken();
-
-        // Redirect ke halaman utama atau halaman login setelah logout
-        return redirect('/');
+        auth()->logout();
+        return redirect()->route('login');
     }
 }

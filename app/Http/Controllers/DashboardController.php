@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Market;
-use App\Models\News;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    /**
-     * Menampilkan halaman dashboard
-     */
     public function index()
     {
-        // Mengambil data dari model Market dan News
-        $markets = Market::all();
-        $news = News::latest()->take(3)->get();
+        $infoCards = [
+            [
+                'title' => 'Kasus Darurat',
+                'description' => 'Kami siap mendukung usaha Anda dengan cepat, bahkan dalam Kasus Darurat. Solusi Pemasaran Berkualitas dan Inovasi untuk Masyarakat adalah prioritas kami.',
+                'link' => '#',
+            ],
+            [
+                'title' => 'Jadwal Karyawan',
+                'description' => 'Dengan manajemen Jadwal Karyawan yang efektif, kami memastikan layanan kami selalu optimal untuk Anda.',
+                'link' => '#',
+            ],
+            [
+                'title' => 'Jam Buka',
+                'description' => 'Senin - Kamis: 07:00 - 15:00 <br> Jum\'at: 07:00 - 13:00',
+                'link' => '#',
+            ],
+        ];
 
-        // Mengirim data ke tampilan dashboard
-        return view('dashboard', compact('markets', 'news'));
+        return view('dashboard', compact('infoCards'));
     }
 }

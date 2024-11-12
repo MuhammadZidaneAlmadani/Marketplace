@@ -3,27 +3,18 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthCheck
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        // Cek apakah pengguna sudah login
+        // Jika pengguna belum login, arahkan ke halaman login
         if (!Auth::check()) {
-            // Redirect ke halaman login jika belum login
             return redirect()->route('login');
         }
 
-        // Lanjutkan ke request berikutnya jika sudah login
+        // Jika sudah login, lanjutkan ke request berikutnya
         return $next($request);
     }
 }
