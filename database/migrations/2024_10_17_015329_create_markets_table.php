@@ -10,22 +10,21 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::create('markets', function (Blueprint $table) {
-        $table->id();
-        $table->string('nama'); // Nama pasar
-        $table->text('lokasi'); // Lokasi pasar
-        $table->text('deskripsi')->nullable(); // Deskripsi pasar
-        $table->date('tanggal_pendirian'); // Tanggal pendirian
-        $table->text('sejarah_pendirian')->nullable(); // Sejarah pendirian
-        $table->string('foto_utama')->nullable(); // Foto utama (jalur file)
-        $table->string('foto_galeri')->nullable(); // Foto galeri (opsional)
-        $table->timestamps(); // Waktu pembuatan dan pembaruan
-    });
-}
-
-
-
+    {
+        Schema::create('markets', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama'); // Nama pasar
+            $table->text('lokasi'); // Lokasi pasar
+            $table->text('deskripsi')->nullable(); // Deskripsi pasar
+            $table->date('tanggal_pendirian'); // Tanggal pendirian
+            $table->text('sejarah_pendirian')->nullable(); // Sejarah pendirian
+            $table->string('foto_utama')->nullable(); // Foto utama (jalur file)
+            $table->string('foto_galeri')->nullable(); // Foto galeri (opsional)
+            $table->double('latitude')->nullable(); // Latitude lokasi pasar
+            $table->double('longitude')->nullable(); // Longitude lokasi pasar
+            $table->timestamps(); // Waktu pembuatan dan pembaruan
+        });
+    }
 
     /**
      * Reverse the migrations.

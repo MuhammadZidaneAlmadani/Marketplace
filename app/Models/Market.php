@@ -17,6 +17,8 @@ class Market extends Model
         'deskripsi',
         'tanggal_pendirian',
         'sejarah_pendirian',
+        'latitude', // Tambahkan latitude
+        'longitude', // Tambahkan longitude
         'foto_utama',
         'foto_galeri',
     ];

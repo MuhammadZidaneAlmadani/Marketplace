@@ -15,5 +15,7 @@ class News extends Model
         'judul',
         'konten',
         'published_at',
+        'image', // Add this line
     ];
+
 }

@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // Tambahkan ini
 
 class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all(); // Menampilkan semua acara
+        $events = Event::all();
         return view('events.index', compact('events'));
     }
 
     public function create()
     {
-        return view('events.create'); // Menampilkan form untuk membuat acara baru
+        return view('events.create');
     }
 
     public function store(Request $request)
@@ -24,15 +25,21 @@ class EventController extends Controller
             'judul' => 'required|string|max:255',
             'tanggal_acara' => 'required|date',
             'deskripsi' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Event::create($validatedData); // Menyimpan acara baru
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
+        Event::create($validatedData);
         return redirect()->route('events.index')->with('success', 'Acara berhasil dibuat.');
     }
 
     public function edit(Event $event)
     {
-        return view('events.edit', compact('event')); // Menampilkan form untuk edit acara
+        return view('events.edit', compact('event'));
     }
 
     public function update(Request $request, Event $event)
@@ -41,15 +48,33 @@ class EventController extends Controller
             'judul' => 'required|string|max:255',
             'tanggal_acara' => 'required|date',
             'deskripsi' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $event->update($validatedData); // Memperbarui acara
+        if ($request->hasFile('image')) {
+            if ($event->image && Storage::exists('public/' . $event->image)) {
+                Storage::delete('public/' . $event->image);
+            }
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
+        $event->update($validatedData);
         return redirect()->route('events.index')->with('success', 'Acara berhasil diperbarui.');
     }
 
     public function destroy(Event $event)
     {
-        $event->delete(); // Menghapus acara
+        if ($event->image && Storage::exists('public/' . $event->image)) {
+            Storage::delete('public/' . $event->image);
+        }
+
+        $event->delete();
         return redirect()->route('events.index')->with('success', 'Acara berhasil dihapus.');
+    }
+
+    public function show(Event $event)
+    {
+        return view('events.show', compact('event'));
     }
 }

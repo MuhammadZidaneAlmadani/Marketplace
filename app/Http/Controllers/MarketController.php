@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -21,40 +20,45 @@ class MarketController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input termasuk koordinat dan file gambar
+        // Validasi input termasuk koordinat
         $data = $request->validate([
             'nama' => 'required|string|max:255',
             'lokasi' => 'required|string',
             'deskripsi' => 'nullable|string',
             'tanggal_pendirian' => 'required|date',
             'sejarah_pendirian' => 'nullable|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-            'foto_utama' => 'nullable|image',
-            'foto_galeri' => 'nullable|image',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
+            'foto_utama' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Tambahkan validasi mime type dan ukuran
+            'foto_galeri' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Menyimpan file foto utama jika ada
+        // Debugging: Pastikan data diterima dengan benar
+        dd($data);
+
+        // Simpan file foto jika ada
         if ($request->hasFile('foto_utama')) {
             $data['foto_utama'] = $request->file('foto_utama')->store('uploads', 'public');
         }
 
-        // Menyimpan file foto galeri jika ada
         if ($request->hasFile('foto_galeri')) {
             $data['foto_galeri'] = $request->file('foto_galeri')->store('uploads', 'public');
         }
 
-        // Simpan data ke database
+        // Buat record baru di database
         Market::create($data);
 
-        return redirect()->route('markets.index');
+        return redirect()->route('markets.index')->with('success', 'Pasar berhasil ditambahkan.');
     }
 
+
+
     public function show($id)
-    {
-        $market = Market::findOrFail($id);
-        return view('markets.show', compact('market'));
-    }
+{
+    $market = Market::findOrFail($id);
+    return view('markets.show', compact('market'));
+}
+
 
     public function edit($id)
     {
@@ -64,15 +68,15 @@ class MarketController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validasi input termasuk koordinat dan file gambar
+        // Validasi input termasuk koordinat
         $data = $request->validate([
             'nama' => 'required|string|max:255',
             'lokasi' => 'required|string',
             'deskripsi' => 'nullable|string',
             'tanggal_pendirian' => 'required|date',
             'sejarah_pendirian' => 'nullable|string',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
+            'latitude' => 'nullable|numeric|between:-90,90',
+            'longitude' => 'nullable|numeric|between:-180,180',
             'foto_utama' => 'nullable|image',
             'foto_galeri' => 'nullable|image',
         ]);

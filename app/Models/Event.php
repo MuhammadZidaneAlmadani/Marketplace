@@ -15,5 +15,6 @@ class Event extends Model
         'judul',
         'tanggal_acara',
         'deskripsi',
+        'image', // Tambahkan kolom image ke $fillable
     ];
 }
