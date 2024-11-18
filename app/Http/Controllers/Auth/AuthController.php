@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth; // Tambahkan ini
 
 class AuthController extends Controller
 {
     // Menampilkan form login
     public function showLoginForm()
     {
-        return view('auth.login'); // Pastikan file Blade `resources/views/auth/login.blade.php` ada
+        return view('auth.login');
     }
 
     // Memproses login
@@ -18,8 +19,9 @@ class AuthController extends Controller
     {
         $credentials = $request->only('username', 'password');
 
-        if (auth()->attempt($credentials)) {
-            return redirect()->route('dashboard'); // Arahkan ke dashboard
+        // Gunakan Auth::attempt() secara langsung
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('dashboard');
         }
 
         return redirect()->route('login')->withErrors([
@@ -30,7 +32,7 @@ class AuthController extends Controller
     // Logout dan arahkan ke halaman login
     public function logout()
     {
-        auth()->logout();
+        Auth::logout(); // Gunakan Auth::logout() secara langsung
         return redirect()->route('login');
     }
 }

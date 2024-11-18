@@ -2135,4 +2135,26 @@ video {
     --tw-text-opacity: 1;
     color: rgb(209 213 219 / var(--tw-text-opacity));
   }
+
+  /* Tombol Pelajari Lebih Lanjut */
+.btn-custom {
+  display: inline-block;
+  background-color: #ffffff; /* Warna latar belakang putih */
+  color: #28a745; /* Warna teks hijau */
+  padding: 10px 20px; /* Ukuran padding */
+  text-align: center; /* Posisi teks */
+  font-weight: bold; /* Teks tebal */
+  border-radius: 8px; /* Membulatkan sudut */
+  text-decoration: none; /* Menghapus garis bawah */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  transition: all 0.3s ease-in-out; /* Animasi transisi */
+}
+
+.btn-custom:hover {
+  background-color: #28a745; /* Warna hijau saat hover */
+  color: #ffffff; /* Teks putih saat hover */
+  transform: scale(1.05); /* Efek pembesaran saat hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Efek bayangan saat hover */
+}
+
 }

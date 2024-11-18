@@ -7,6 +7,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -29,3 +30,7 @@ Route::resource('events', EventController::class); // Resource route untuk Event
 
 // Rute Informasi
 Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');
+
+// contact us
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
