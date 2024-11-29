@@ -32,5 +32,5 @@ Route::resource('events', EventController::class); // Resource route untuk Event
 Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');
 
 // contact us
-Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::get('/hubungi', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/hubungi', [ContactController::class, 'submit'])->name('contact.submit');

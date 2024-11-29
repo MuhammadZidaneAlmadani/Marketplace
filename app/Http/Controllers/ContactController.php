@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -19,9 +20,10 @@ class ContactController extends Controller
             'email' => 'required|email',
             'phone' => 'nullable',
             'country' => 'required',
+            'message' => 'nullable',
         ]);
 
-        // Logika untuk mengirim email atau menyimpan ke database bisa ditambahkan di sini.
+        Contact::create($request->all());
 
         return redirect()->back()->with('success', 'Pesan Anda telah berhasil dikirim!');
     }

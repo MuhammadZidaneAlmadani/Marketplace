@@ -6,23 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up()
+    public function up(): void
     {
-        Schema::table('news', function (Blueprint $table) {
-                $table->string('image')->nullable();
-        });
+        // Cek apakah tabel 'news' memiliki kolom 'image'
+        if (!Schema::hasColumn('news', 'image')) {
+            Schema::table('news', function (Blueprint $table) {
+                $table->string('image')->nullable(); // Tambahkan kolom `image` jika belum ada
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::table('news', function (Blueprint $table) {
-            //
-        });
+        // Hapus kolom `image` jika ada
+        if (Schema::hasColumn('news', 'image')) {
+            Schema::table('news', function (Blueprint $table) {
+                $table->dropColumn('image');
+            });
+        }
     }
 };
