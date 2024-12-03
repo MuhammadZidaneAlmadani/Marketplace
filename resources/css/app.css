@@ -6,3 +6,17 @@
 .test-bg {
     @apply bg-red-500 text-white;
 }
+
+/* Tambahkan ini di akhir file CSS Anda */  
+.btn-custom {  
+    display: inline-block;  
+    padding: 10px 20px;  
+    background-color: #4CAF50; /* Warna hijau */  
+    color: white;  
+    border-radius: 5px;  
+    transition: background-color 0.3s;  
+}  
+
+.btn-custom:hover {  
+    background-color: #45a049; /* Warna hijau gelap saat hover */  
+}
