@@ -12,6 +12,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PasarController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\HubungiKamiController;
+use App\Models\Contact;
+use App\Models\Market;
+use App\Models\News;
 
 // Rute Otentikasi
 Route::get('/', function () {
@@ -40,9 +43,9 @@ Route::get('/informasi/event', [InformasiController::class, 'event'])->name('eve
 
 // Route untuk halaman lain
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/pasar', [PasarController::class, 'index'])->name('pasar');
-Route::get('/layanan', [LayananController::class, 'index'])->name('layanan');
-Route::get('/hubungi-kami', [HubungiKamiController::class, 'index'])->name('hubungi-kami');
+Route::get('/markets', [MarketController::class, 'index'])->name('market');
+Route::get('/layanan', [NewsController::class, 'index'])->name('layanan');
+Route::get('/hubungi-kami', [ContactController::class, 'index'])->name('hubungi-kami');
 
 // Contact Us
 Route::get('/hubungi', [ContactController::class, 'index'])->name('contact.index');

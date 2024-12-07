@@ -5,7 +5,8 @@
 
     <!-- Banner -->
     <div class="mb-12">
-        <img src="{{ asset('images/banner.jpg') }}" alt="Disperindag Banner" class="w-full rounded-lg shadow-lg">
+        <img src="{{ asset('images/logo_disperindag.jpeg') }}" alt="Disperindag Banner" class="w-full rounded-lg shadow-lg">
+        <span class="ml-2 text-uppercase font-weight-bold" style="color: #28a745;">DISPERINDAG</span>
     </div>
 
     <!-- Info Cards -->

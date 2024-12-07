@@ -117,7 +117,7 @@
 
         <div class="text-center text-sm mt-8">
             &copy; Disperindag 2024 | All Rights Reserved by R2
-        </div>
+        </div> 
     </footer>
 
 </body>

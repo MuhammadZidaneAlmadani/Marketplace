@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Dashboard Disperindag')</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -22,6 +23,23 @@
         header .navbar-brand img {
             height: 50px;
         }
+
+        .logo-text {
+        font-family: 'Black Ops One', sans-serif; /* Gunakan font Black Ops One */
+        font-weight: bold;
+        font-size: 2ch; /* Sesuaikan ukuran teks */
+        letter-spacing: 3.5px; /* Spasi antar huruf */
+        }
+
+        .logo-text .text-green {
+        color: #007b32; /* Warna hijau pertama */
+        }
+
+        .logo-text .text-darkgreen {
+        color: #004d26; /* Warna hijau lebih gelap */
+        }
+
+
 
         /* Carousel */
         .carousel-item {
@@ -115,31 +133,34 @@
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
+     <!-- Header Section -->
+     <header>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="#">
-                    <img src="{{ asset('logo.png') }}" alt="Disperindag Logo">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo_disperindag.jpeg') }}" alt="Disperindag Logo">
+                    <span class="logo-text">
+                        <span class="text-green">DISPE</span><span class="text-darkgreen">RINDAG</span>
+                    </span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Pasar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/markets') }}">Pasar</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Informasi
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">News</a>
-                                <a class="dropdown-item" href="#">Event</a>
+                                <a class="dropdown-item" href="{{ url('/informasi/news') }}">News</a>
+                                <a class="dropdown-item" href="{{ url('/informasi/events') }}">Event</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#">Layanan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Hubungi Kami</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/layanan') }}">Layanan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/hubungi-kami') }}">Hubungi Kami</a></li>
                     </ul>
                 </div>
             </nav>
