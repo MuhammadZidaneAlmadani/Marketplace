@@ -2,7 +2,7 @@
 
 @section('content')
     <h2>Daftar Pasar</h2>
-    <a href="{{ route('markets.create') }}">Tambah Pasar Baru</a>
+    <a href="/markets_admin">Tambah Pasar Baru</a>
     <ul>
         @foreach($markets as $market)
             <li>

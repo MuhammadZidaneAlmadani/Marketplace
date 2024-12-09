@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard Disperindag')</title>
+    <title>@yield('title', 'Dashboard Admin - Disperindag')</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -13,9 +13,9 @@
         }
 
         header {
-            background-color: #ffffff;
+            background-color: #343a40;
+            color: white;
             padding: 1rem 0;
-            border-bottom: 1px solid #ddd;
         }
 
         header .navbar-brand img {
@@ -23,7 +23,7 @@
         }
 
         footer {
-            background-color: #28a745;
+            background-color: #343a40;
             color: white;
             padding: 2rem 0;
             margin-top: 4rem;
@@ -36,33 +36,15 @@
         .card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .carousel-item {
-            position: relative;
-            text-align: center;
-            color: white;
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .carousel-item .carousel-caption {
-            bottom: 30%;
-        }
-
-        .carousel-item h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
-    <!-- Header Section (Navbar) -->
+    <!-- Header Section (Navbar Admin) -->
     <header>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="{{ route('dashboard') }}">
-                    <img src="{{ asset('logo.png') }}" alt="Logo Disperindag">
+                    <img src="{{ asset('logo.png') }}" alt="Logo Admin Disperindag">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -73,19 +55,13 @@
                             <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('markets.index') }}">Pasar</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Informasi
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('news.index') }}">Berita</a>
-                                <a class="dropdown-item" href="{{ route('events.index') }}">Event</a>
-                            </div>
+                            <a class="nav-link" href="{{ route('markets.admin.index') }}">Kelola Pasar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact.index') }}">Hubungi Kami</a>
+                            <a class="nav-link" href="{{ route('news.admin.index') }}">Kelola Berita</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('events.admin.index') }}">Kelola Event</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
@@ -104,7 +80,7 @@
     <!-- Footer Section -->
     <footer>
         <div class="container text-center">
-            <p>DISPERINDAG KABUPATEN PAMEKASAN</p>
+            <p>ADMIN - DISPERINDAG KABUPATEN PAMEKASAN</p>
             <p>Alamat: Jl. Urip Sumoharjo No.2, Sumenep, Jawa Timur</p>
         </div>
     </footer>

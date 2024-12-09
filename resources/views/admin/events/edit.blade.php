@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<!-- resources/views/events/edit.blade.php (untuk Admin) -->
+@extends('admin.layouts.app')
 
 @section('content')
 <div class="container">

@@ -1,89 +1,84 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Market;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MarketController extends Controller
 {
-    public function index()
+    // Menampilkan daftar pasar
+    public function index(Request $request)
     {
-        $markets = Market::all();
-        return view('markets.index', compact('markets'));
+        // Pencarian
+        $query = $request->input('search');
+        $markets = Market::when($query, function ($queryBuilder, $query) {
+            return $queryBuilder->where('nama', 'like', "%{$query}%")
+                ->orWhere('lokasi', 'like', "%{$query}%");
+        })->paginate(10); // Pagination dengan 10 data per halaman
+
+        return view('admin.markets.index', compact('markets', 'query'));
     }
 
+    // Menampilkan form untuk membuat pasar baru
     public function create()
     {
-        return view('markets.create');
+        return view('admin.markets.create');
     }
 
+    // Menyimpan pasar baru
     public function store(Request $request)
     {
-        // Validasi input termasuk koordinat
+        // Validasi input
         $data = $request->validate([
             'nama' => 'required|string|max:255',
-            'lokasi' => 'required|string',
+            'lokasi' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'tanggal_pendirian' => 'required|date',
-            'sejarah_pendirian' => 'nullable|string',
-            'latitude' => 'required|numeric|between:-90,90',
-            'longitude' => 'required|numeric|between:-180,180',
-            'foto_utama' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Tambahkan validasi mime type dan ukuran
-            'foto_galeri' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'latitude' => 'nullable|numeric|between:-90,90',
+            'longitude' => 'nullable|numeric|between:-180,180',
+            'foto_utama' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Debugging: Pastikan data diterima dengan benar
-        dd($data);
-
-        // Simpan file foto jika ada
+        // Upload foto utama jika ada
         if ($request->hasFile('foto_utama')) {
             $data['foto_utama'] = $request->file('foto_utama')->store('uploads', 'public');
         }
 
-        if ($request->hasFile('foto_galeri')) {
-            $data['foto_galeri'] = $request->file('foto_galeri')->store('uploads', 'public');
-        }
-
-        // Buat record baru di database
+        // Buat data pasar
         Market::create($data);
 
-        return redirect()->route('markets.index')->with('success', 'Pasar berhasil ditambahkan.');
+        return redirect()->route('markets.admin.index')->with('success', 'Pasar berhasil ditambahkan.');
     }
 
-
-
-    public function show($id)
-{
-    $market = Market::findOrFail($id);
-    return view('markets.show', compact('market'));
-}
-
-
-    public function edit($id)
+    // Menampilkan detail pasar
+    public function show(Market $market)
     {
-        $market = Market::findOrFail($id);
-        return view('markets.edit', compact('market'));
+        return view('admin.markets.show', compact('market'));
     }
 
-    public function update(Request $request, $id)
+    // Menampilkan form edit pasar
+    public function edit(Market $market)
     {
-        // Validasi input termasuk koordinat
+        return view('admin.markets.edit', compact('market'));
+    }
+
+    // Memperbarui data pasar
+    public function update(Request $request, Market $market)
+    {
+        // Validasi input
         $data = $request->validate([
             'nama' => 'required|string|max:255',
-            'lokasi' => 'required|string',
+            'lokasi' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'tanggal_pendirian' => 'required|date',
-            'sejarah_pendirian' => 'nullable|string',
             'latitude' => 'nullable|numeric|between:-90,90',
             'longitude' => 'nullable|numeric|between:-180,180',
-            'foto_utama' => 'nullable|image',
-            'foto_galeri' => 'nullable|image',
+            'foto_utama' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $market = Market::findOrFail($id);
-
-        // Menyimpan file foto utama jika ada dan menghapus file lama
+        // Upload foto utama jika ada dan hapus yang lama
         if ($request->hasFile('foto_utama')) {
             if ($market->foto_utama) {
                 Storage::disk('public')->delete($market->foto_utama);
@@ -91,35 +86,23 @@ class MarketController extends Controller
             $data['foto_utama'] = $request->file('foto_utama')->store('uploads', 'public');
         }
 
-        // Menyimpan file foto galeri jika ada dan menghapus file lama
-        if ($request->hasFile('foto_galeri')) {
-            if ($market->foto_galeri) {
-                Storage::disk('public')->delete($market->foto_galeri);
-            }
-            $data['foto_galeri'] = $request->file('foto_galeri')->store('uploads', 'public');
-        }
-
-        // Update data di database
+        // Update data pasar
         $market->update($data);
 
-        return redirect()->route('markets.index');
+        return redirect()->route('markets.admin.index')->with('success', 'Pasar berhasil diperbarui.');
     }
 
-    public function destroy($id)
+    // Menghapus pasar
+    public function destroy(Market $market)
     {
-        $market = Market::findOrFail($id);
-
-        // Hapus file foto utama dan galeri dari storage jika ada
+        // Hapus foto utama jika ada
         if ($market->foto_utama) {
             Storage::disk('public')->delete($market->foto_utama);
         }
-        if ($market->foto_galeri) {
-            Storage::disk('public')->delete($market->foto_galeri);
-        }
 
-        // Hapus data dari database
+        // Hapus data pasar
         $market->delete();
 
-        return redirect()->route('markets.index');
+        return redirect()->route('markets.admin.index')->with('success', 'Pasar berhasil dihapus.');
     }
 }
