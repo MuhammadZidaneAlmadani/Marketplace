@@ -48,5 +48,5 @@ Route::get('/layanan', [NewsController::class, 'index'])->name('layanan');
 Route::get('/hubungi-kami', [ContactController::class, 'index'])->name('hubungi-kami');
 
 // Contact Us
-Route::get('/hubungi', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/hubungi', [ContactController::class, 'submit'])->name('contact.submit');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact/sumbit', [ContactController::class, 'submit'])->name('contact.submit');

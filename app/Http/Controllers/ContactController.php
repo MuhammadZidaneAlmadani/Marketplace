@@ -18,9 +18,9 @@ class ContactController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
-            'phone' => 'nullable',
-            'country' => 'required',
-            'message' => 'nullable',
+            'phone' => 'nullable|string',
+            'country' => 'required|string',
+            'message' => 'nullable|string',
         ]);
 
         Contact::create($request->all());
