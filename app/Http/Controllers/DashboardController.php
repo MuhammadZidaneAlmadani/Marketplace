@@ -1,18 +1,21 @@
-<?php  
+<?php
 
-namespace App\Http\Controllers;  
+namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;  
+use App\Models\Market;
+use App\Models\News;
+use App\Models\Event;
 
-class DashboardController extends Controller  
-{  
-    public function index()  
-    {  
-        $infoCards = [  
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        // Info Cards
+        $infoCards = [
             [
                 'title' => 'Kasus Darurat',
                 'description' => 'Kami siap mendukung usaha Anda dengan cepat, bahkan dalam Kasus Darurat. Solusi Pemasaran Berkualitas dan Inovasi untuk Masyarakat adalah prioritas kami.',
-                'link' => '#',
+                'link' => route('events.admin.index'),
             ],
             [
                 'title' => 'Jadwal Karyawan',
@@ -24,26 +27,23 @@ class DashboardController extends Controller
                 'description' => 'Senin - Kamis: 07:00 - 15:00 <br> Jum\'at: 07:00 - 13:00',
                 'link' => '#',
             ],
-        ];  
+        ];
 
-        $additionalInfo = [  
-            [
-                'title' => 'Berita Pasar',
-                'description' => 'Kami menyediakan berbagai informasi terkini tentang berita dari pasar.',
-                'link' => '#',
-            ],
-            [
-                'title' => 'Solusi Pemasaran yang Berkualitas',
-                'description' => 'Kami menyediakan solusi pemasaran yang efektif untuk mendukung bisnis Anda.',
-                'link' => '#',
-            ],
-            [
-                'title' => 'Inovasi Pemasaran untuk Masyarakat',
-                'description' => 'Kami selalu berupaya memberikan inovasi pemasaran terbaru.',
-                'link' => '#',
-            ],
-        ];  
+        // Statistik
+        $statistics = [
+            'markets' => Market::count(),
+            'news' => News::count(),
+            'published_news' => News::whereNotNull('published_at')->count(),
+            'draft_news' => News::whereNull('published_at')->count(),
+        ];
 
-        return view('dashboard', compact('infoCards', 'additionalInfo'));  
-    }  
+        // Event Mendatang
+        $upcomingEvents = Event::where('tanggal_acara', '>=', now())
+            ->orderBy('tanggal_acara', 'asc')
+            ->take(5)
+            ->get();
+
+        // Kirim data ke view
+        return view('admin.dashboard', compact('infoCards', 'statistics', 'upcomingEvents'));
+    }
 }

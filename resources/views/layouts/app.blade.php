@@ -13,11 +13,10 @@
             background-color: #f8f9fa;
         }
 
-        /* Header */
         header {
-            background-color: white;
+            background-color: #ffffff;
             padding: 1rem 0;
-            border-bottom: 2px solid #e8e8e8;
+            border-bottom: 1px solid #ddd;
         }
 
         header .navbar-brand img {
@@ -41,7 +40,21 @@
 
 
 
-        /* Carousel */
+        footer {
+            background-color: #28a745;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .carousel-item {
             position: relative;
             text-align: center;
@@ -59,135 +72,51 @@
             font-size: 2.5rem;
             font-weight: bold;
         }
-
-        /* Feature Section */
-        .feature-section {
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .feature-section h3 {
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .feature-section .card {
-            border: none;
-            border-radius: 15px;
-            background-color: #d4edda;
-            color: #155724;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-section .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-section .card i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #28a745;
-        }
-
-        /* Informasi Berita */
-        .news-section {
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .news-section h3 {
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .news-section .news-item {
-            margin-bottom: 2rem;
-        }
-
-        .news-section .news-item i {
-            font-size: 2rem;
-            color: #28a745;
-        }
-
-        .news-section .news-item h5 {
-            font-weight: bold;
-            margin-top: 1rem;
-        }
-
-        .news-section .news-item p {
-            font-size: 0.9rem;
-            color: #555;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #28a745;
-            color: white;
-            padding: 2rem 0;
-        }
-
-        footer p {
-            margin: 0;
-        }
     </style>
 </head>
 <body>
-     <!-- Header Section -->
-     <header>
+    <!-- Header Section -->
+    <header>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('images/logo_disperindag.jpeg') }}" alt="Disperindag Logo">
-                    <span class="logo-text">
-                        <span class="text-green">DISPE</span><span class="text-darkgreen">RINDAG</span>
-                    </span>
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('logo.png') }}" alt="Disperindag Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/markets') }}">Pasar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Pasar</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Informasi
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ url('/informasi/news') }}">News</a>
-                                <a class="dropdown-item" href="{{ url('/informasi/events') }}">Event</a>
+                                <a class="dropdown-item" href="#">News</a>
+                                <a class="dropdown-item" href="#">Event</a>
                             </div>
                         </li>
+<<<<<<< HEAD
                         <li class="nav-item"><a class="nav-link" href="{{ url('/layanan') }}">Layanan</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Hubungi Kami</a></li>
+=======
+                        <li class="nav-item"><a class="nav-link" href="#">Layanan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Hubungi Kami</a></li>
+>>>>>>> 3d5000a0f2921cf7a8d81acf49579efd65777891
                     </ul>
                 </div>  
             </nav>
         </div>
     </header>
 
-    <!-- Carousel Section -->
-    <div id="carouselExample" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: url('{{ asset('images/banner.jpg') }}');">
-                <div class="carousel-caption text-center">
-                    <h1>DINAS PERINDUSTRIAN DAN PERDAGANGAN</h1>
-                    <h1>KABUPATEN PAMEKASAN</h1>
-                    <p>Lorem Ipsum adalah teks standar industri...</p>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+    <!-- Main Content Section -->
+    <div class="container mt-5">
+        @yield('content')
     </div>
 
+<<<<<<< HEAD
     <!-- Feature Section -->
 <section class="feature-section">
     <div class="container">
@@ -249,6 +178,8 @@
 </section>
 
 
+=======
+>>>>>>> 3d5000a0f2921cf7a8d81acf49579efd65777891
     <!-- Footer Section -->
     <footer>
         <div class="container text-center">
