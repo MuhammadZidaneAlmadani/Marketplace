@@ -9,20 +9,14 @@ use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
-<<<<<<< HEAD
 use App\Http\Middleware\IsAdmin;
-=======
 use App\Http\Controllers\PasarController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\HubungiKamiController;
 use App\Models\Contact;
 use App\Models\Market;
 use App\Models\News;
->>>>>>> 68ecc9d7f001e0164c3e04b7e50d7b4fdd0ec7ab
 
-// -----------------------------------------
-// RUTE PENGUNJUNG (Tanpa Login)
-// -----------------------------------------
 
 // Halaman utama pengunjung
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -97,9 +91,6 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
         Route::delete('/{event}', [EventController::class, 'destroy'])->name('destroy');
     });
 });
-<<<<<<< HEAD
-=======
-
 // Resource routes untuk Market, News, dan Event
 Route::resource('markets', MarketController::class);
 Route::resource('news', NewsController::class);
@@ -117,11 +108,7 @@ Route::get('/layanan', [NewsController::class, 'index'])->name('layanan');
 Route::get('/hubungi-kami', [ContactController::class, 'index'])->name('hubungi-kami');
 
 // Contact Us
-<<<<<<< HEAD
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact/sumbit', [ContactController::class, 'submit'])->name('contact.submit');
-=======
 Route::get('/hubungi', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/hubungi', [ContactController::class, 'submit'])->name('contact.submit');
->>>>>>> 68ecc9d7f001e0164c3e04b7e50d7b4fdd0ec7ab
->>>>>>> 3d5000a0f2921cf7a8d81acf49579efd65777891

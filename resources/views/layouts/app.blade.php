@@ -80,7 +80,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ asset('logo.png') }}" alt="Disperindag Logo">
+                    <img src="{{ asset('logo_disperindag.jpeg') }}" alt="Disperindag Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -98,13 +98,10 @@
                                 <a class="dropdown-item" href="#">Event</a>
                             </div>
                         </li>
-<<<<<<< HEAD
                         <li class="nav-item"><a class="nav-link" href="{{ url('/layanan') }}">Layanan</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Hubungi Kami</a></li>
-=======
                         <li class="nav-item"><a class="nav-link" href="#">Layanan</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Hubungi Kami</a></li>
->>>>>>> 3d5000a0f2921cf7a8d81acf49579efd65777891
                     </ul>
                 </div>  
             </nav>
@@ -116,7 +113,6 @@
         @yield('content')
     </div>
 
-<<<<<<< HEAD
     <!-- Feature Section -->
 <section class="feature-section">
     <div class="container">
@@ -177,9 +173,6 @@
     </div>
 </section>
 
-
-=======
->>>>>>> 3d5000a0f2921cf7a8d81acf49579efd65777891
     <!-- Footer Section -->
     <footer>
         <div class="container text-center">

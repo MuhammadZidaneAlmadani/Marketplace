@@ -1,9 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
-<<<<<<< HEAD
     <h1>Daftar Pasar</h1>
-=======
     <h2>Daftar Pasar</h2>
     <a href="/markets_admin">Tambah Pasar Baru</a>
     <ul>
@@ -13,7 +10,6 @@
                 @if($market->foto_utama)
                     <img src="{{ asset('storage/' . $market->foto_utama) }}" alt="{{ $market->nama }}" class="img-thumbnail" width="100">
                 @endif
->>>>>>> 3d5000a0f2921cf7a8d81acf49579efd65777891
 
     @if($markets->isEmpty())
         <p>Tidak ada pasar yang tersedia.</p>
