@@ -75,13 +75,22 @@
         }
 
         .alert {
-            color: #721c24;
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
             padding: 0.75rem 1.25rem;
             border-radius: 5px;
             margin-bottom: 1rem;
             text-align: left;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
         }
     </style>
 </head>
@@ -90,8 +99,23 @@
         <img src="{{ asset('images/logo_disperindag.jpeg') }}" alt="Disperindag Logo">
         <h1>DISPERINDAG</h1>
 
+        <!-- Pesan Sukses -->
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <!-- Pesan Kesalahan -->
+        @if ($errors->has('login'))
+            <div class="alert alert-danger">
+                {{ $errors->first('login') }}
+            </div>
+        @endif
+
+        <!-- Daftar Kesalahan Validasi -->
         @if ($errors->any())
-            <div class="alert">
+            <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -100,6 +124,7 @@
             </div>
         @endif
 
+        <!-- Form Login -->
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group">

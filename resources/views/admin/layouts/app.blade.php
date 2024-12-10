@@ -64,7 +64,11 @@
                             <a class="nav-link" href="{{ route('events.admin.index') }}">Kelola Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                            <!-- Form Logout di Navbar -->
+                            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-link text-white">Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -82,6 +86,11 @@
         <div class="container text-center">
             <p>ADMIN - DISPERINDAG KABUPATEN PAMEKASAN</p>
             <p>Alamat: Jl. Urip Sumoharjo No.2, Sumenep, Jawa Timur</p>
+            <!-- Form Logout di Footer (Opsional, jika diperlukan di footer juga) -->
+            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-link text-white">Logout</button>
+            </form>
         </div>
     </footer>
 
