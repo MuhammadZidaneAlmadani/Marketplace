@@ -16,7 +16,7 @@ use App\Http\Middleware\IsAdmin;
 // -----------------------------------------
 
 // Halaman utama
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('guest.dashboard');
 
 // Rute untuk event
 Route::prefix('events')->group(function () {

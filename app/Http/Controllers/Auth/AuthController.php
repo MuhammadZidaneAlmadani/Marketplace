@@ -27,8 +27,8 @@ class AuthController extends Controller
             'password' => 'required|string',
             'remember' => 'nullable|boolean',
         ], [
-            'username.required' => 'Username wajib diisi.',
-            'password.required' => 'Password wajib diisi.',
+            'username.required' => 'Admin',
+            'password.required' => 'Admin123',
         ]);
 
         // Mengambil input login

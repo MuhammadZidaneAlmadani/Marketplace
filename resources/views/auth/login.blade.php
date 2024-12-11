@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Disperindag</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -29,13 +30,25 @@
         .login-container img {
             width: 80px;
             margin-bottom: 1rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .login-container h1 {
-            font-size: 24px;
-            color: #003366;
+        .logo-text {
+            font-family: 'Black Ops One', sans-serif; /* Gunakan font Black Ops One */
             font-weight: bold;
+            font-size: 2rem; /* Sesuaikan ukuran teks */
+            letter-spacing: 3.5px; /* Spasi antar huruf */
             margin-bottom: 1rem;
+        }
+
+        .logo-text .text-green {
+            color: #007b32; /* Warna hijau pertama */
+        }
+
+        .logo-text .text-darkgreen {
+            color: #004d26; /* Warna hijau lebih gelap */
         }
 
         .form-group {
@@ -96,8 +109,13 @@
 </head>
 <body>
     <div class="login-container">
+        <!-- Logo -->
         <img src="{{ asset('images/logo_disperindag.jpeg') }}" alt="Disperindag Logo">
-        <h1>DISPERINDAG</h1>
+        
+        <!-- Text di bawah logo -->
+        <div class="logo-text">
+            <span class="text-green">DISPE</span><span class="text-darkgreen">RINDAG</span>
+        </div>
 
         <!-- Pesan Sukses -->
         @if (session('status'))
