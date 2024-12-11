@@ -1,4 +1,3 @@
-<!-- resources/views/events/show.blade.php (untuk Admin) -->
 @extends('admin.layouts.app')
 
 @section('content')
@@ -7,7 +6,7 @@
     @if ($event->image)
         <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->judul }}" class="img-fluid mb-3">
     @else
-        <img src="{{ asset('images/default.jpg') }}" alt="Default Image" class="img-fluid mb-3">
+        <img src="{{ asset('images/default-event.jpg') }}" alt="Default Image" class="img-fluid mb-3">
     @endif
     <p class="text-muted">{{ \Carbon\Carbon::parse($event->tanggal_acara)->format('d M Y') }}</p>
     <p>{{ $event->deskripsi }}</p>

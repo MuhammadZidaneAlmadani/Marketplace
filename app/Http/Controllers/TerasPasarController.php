@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\TerasPasar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // Pastikan Storage diimpor
 
 class TerasPasarController extends Controller
 {
     public function index()
     {
-        $terasPasar = TerasPasar::all(); // Menampilkan semua Teras Pasar
-        return view('teras_pasar.index', compact('terasPasar'));
+        $terasPasar = TerasPasar::paginate(10);
+        return view('admin.teras_pasar.index', compact('terasPasar'));
     }
 
     public function create()
     {
-        return view('teras_pasar.create'); // Menampilkan form untuk membuat data Teras Pasar baru
+        return view('admin.teras_pasar.create');
     }
 
     public function store(Request $request)
@@ -23,18 +24,28 @@ class TerasPasarController extends Controller
         $validatedData = $request->validate([
             'nama_toko' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'foto' => 'nullable|image',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'digitalisasi_data' => 'boolean',
             'pembayaran_retribusi_elektronik' => 'boolean',
         ]);
 
-        TerasPasar::create($validatedData); // Menyimpan data Teras Pasar baru
-        return redirect()->route('teras-pasar.index')->with('success', 'Teras Pasar berhasil dibuat.');
+        if ($request->hasFile('foto')) {
+            $validatedData['foto'] = $request->file('foto')->store('uploads/teras_pasar', 'public');
+        }
+
+        TerasPasar::create($validatedData);
+
+        return redirect()->route('teras-pasar.admin.index')->with('success', 'Teras Pasar berhasil dibuat.');
+    }
+
+    public function show(TerasPasar $terasPasar)
+    {
+        return view('admin.teras_pasar.show', compact('terasPasar'));
     }
 
     public function edit(TerasPasar $terasPasar)
     {
-        return view('teras_pasar.edit', compact('terasPasar')); // Menampilkan form untuk edit Teras Pasar
+        return view('admin.teras_pasar.edit', compact('terasPasar'));
     }
 
     public function update(Request $request, TerasPasar $terasPasar)
@@ -42,18 +53,35 @@ class TerasPasarController extends Controller
         $validatedData = $request->validate([
             'nama_toko' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'foto' => 'nullable|image',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'digitalisasi_data' => 'boolean',
             'pembayaran_retribusi_elektronik' => 'boolean',
         ]);
 
-        $terasPasar->update($validatedData); // Memperbarui data Teras Pasar
-        return redirect()->route('teras-pasar.index')->with('success', 'Teras Pasar berhasil diperbarui.');
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($terasPasar->foto) {
+                Storage::disk('public')->delete($terasPasar->foto);
+            }
+
+            // Simpan foto baru
+            $validatedData['foto'] = $request->file('foto')->store('uploads/teras_pasar', 'public');
+        }
+
+        $terasPasar->update($validatedData);
+
+        return redirect()->route('teras-pasar.admin.index')->with('success', 'Teras Pasar berhasil diperbarui.');
     }
 
     public function destroy(TerasPasar $terasPasar)
     {
-        $terasPasar->delete(); // Menghapus Teras Pasar
-        return redirect()->route('teras-pasar.index')->with('success', 'Teras Pasar berhasil dihapus.');
+        // Hapus foto jika ada
+        if ($terasPasar->foto) {
+            Storage::disk('public')->delete($terasPasar->foto);
+        }
+
+        $terasPasar->delete();
+
+        return redirect()->route('teras-pasar.admin.index')->with('success', 'Teras Pasar berhasil dihapus.');
     }
 }

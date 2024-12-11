@@ -11,21 +11,16 @@ class Market extends Model
 
     protected $table = 'markets'; // Nama tabel di database
 
+
     protected $fillable = [
         'nama',
         'lokasi',
         'deskripsi',
         'tanggal_pendirian',
-        'sejarah_pendirian',
-        'latitude', // Tambahkan latitude
-        'longitude', // Tambahkan longitude
+        'latitude',
+        'longitude',
         'foto_utama',
-        'foto_galeri',
     ];
 
-    // Jika Anda ingin menambahkan relasi, misalnya dengan `TerasPasar`, tambahkan:
-    public function terasPasar()
-    {
-        return $this->hasMany(TerasPasar::class);
-    }
+    protected $dates = ['tanggal_pendirian']; // Pastikan ini ada
 }

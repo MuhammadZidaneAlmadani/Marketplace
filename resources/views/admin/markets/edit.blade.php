@@ -3,33 +3,63 @@
 @section('content')
     <h2>Edit Pasar</h2>
 
-    <form method="POST" action="{{ route('markets.update', $market->id) }}" enctype="multipart/form-data">
+    <form action="{{ route('markets.admin.update', $market->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        <label for="nama">Nama Pasar:</label>
-        <input type="text" id="nama" name="nama" value="{{ $market->nama }}" required>
+        <!-- Input Nama Pasar -->
+        <div class="mb-3">
+            <label for="nama" class="form-label">Nama Pasar:</label>
+            <input type="text" id="nama" name="nama" value="{{ old('nama', $market->nama) }}" class="form-control" required />
+        </div>
 
-        <label for="lokasi">Lokasi:</label>
-        <input type="text" id="lokasi" name="lokasi" value="{{ $market->lokasi }}" required>
+        <!-- Input Lokasi -->
+        <div class="mb-3">
+            <label for="lokasi" class="form-label">Lokasi:</label>
+            <input type="text" id="lokasi" name="lokasi" value="{{ old('lokasi', $market->lokasi) }}" class="form-control" required />
+        </div>
 
-        <label for="deskripsi">Deskripsi:</label>
-        <textarea id="deskripsi" name="deskripsi">{{ $market->deskripsi }}</textarea>
+        <!-- Input Deskripsi -->
+        <div class="mb-3">
+            <label for="deskripsi" class="form-label">Deskripsi:</label>
+            <textarea id="deskripsi" name="deskripsi" class="form-control">{{ old('deskripsi', $market->deskripsi) }}</textarea>
+        </div>
 
-        <label for="tanggal_pendirian">Tanggal Pendirian:</label>
-        <input type="date" id="tanggal_pendirian" name="tanggal_pendirian" value="{{ $market->tanggal_pendirian }}" required>
+        <!-- Input Tanggal Pendirian -->
+        <div class="mb-3">
+            <label for="tanggal_pendirian" class="form-label">Tanggal Pendirian:</label>
+            <input type="date" id="tanggal_pendirian" name="tanggal_pendirian" value="{{ old('tanggal_pendirian', $market->tanggal_pendirian) }}" class="form-control" required />
+        </div>
 
-        <label for="sejarah_pendirian">Sejarah Pendirian:</label>
-        <textarea id="sejarah_pendirian" name="sejarah_pendirian">{{ $market->sejarah_pendirian }}</textarea>
+        <!-- Input Latitude -->
+        <div class="mb-3">
+            <label for="latitude" class="form-label">Latitude:</label>
+            <input type="text" id="latitude" name="latitude" value="{{ old('latitude', $market->latitude) }}" class="form-control" />
+        </div>
 
-        <label for="foto_utama">Foto Utama:</label>
-        <input type="file" id="foto_utama" name="foto_utama">
+        <!-- Input Longitude -->
+        <div class="mb-3">
+            <label for="longitude" class="form-label">Longitude:</label>
+            <input type="text" id="longitude" name="longitude" value="{{ old('longitude', $market->longitude) }}" class="form-control" />
+        </div>
 
-        <label for="foto_galeri">Foto Galeri:</label>
-        <input type="file" id="foto_galeri" name="foto_galeri">
+        <!-- Input Foto Utama -->
+        <div class="mb-3">
+            <label for="foto_utama" class="form-label">Foto Utama:</label>
+            @if($market->foto_utama)
+                <div class="mb-2">
+                    <img src="{{ asset('storage/' . $market->foto_utama) }}" alt="Foto Utama" width="150" class="img-thumbnail">
+                </div>
+            @endif
+            <input type="file" id="foto_utama" name="foto_utama" class="form-control">
+        </div>
 
-        <button type="submit">Perbarui</button>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Perbarui Pasar</button>
+        </div>
     </form>
 
-    <a href="{{ route('markets.index') }}">Kembali ke Daftar Pasar</a>
+    <div>
+        <a href="{{ route('markets.admin.index') }}" class="btn btn-primary">Kembali ke Daftar Pasar</a>
+    </div>
 @endsection
