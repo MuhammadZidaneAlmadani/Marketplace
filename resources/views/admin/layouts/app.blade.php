@@ -13,7 +13,7 @@
         }
 
         header {
-            background-color: #343a40;
+            background-color: #34403a;
             color: white;
             padding: 1rem 0;
         }
@@ -44,7 +44,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <a class="navbar-brand" href="{{ route('dashboard') }}">
-                    <img src="{{ asset('logo.png') }}" alt="Logo Admin Disperindag">
+                    <img src="{{ asset('logo_disperindag.jpeg') }}" alt="Logo Admin Disperindag">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -64,7 +64,15 @@
                             <a class="nav-link" href="{{ route('events.admin.index') }}">Kelola Event</a>
                         </li>
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link" href="{{ route('teras-pasar.admin.index') }}">Teras Pasar</a>
+=======
+                            <!-- Form Logout di Navbar -->
+                            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-link text-white">Logout</button>
+                            </form>
+>>>>>>> ddaef81cabd30f29ff494ed02f43af3a58565c4b
                         </li>
                     </ul>
                 </div>
@@ -82,6 +90,11 @@
         <div class="container text-center">
             <p>ADMIN - DISPERINDAG KABUPATEN PAMEKASAN</p>
             <p>Alamat: Jl. Urip Sumoharjo No.2, Sumenep, Jawa Timur</p>
+            <!-- Form Logout di Footer (Opsional, jika diperlukan di footer juga) -->
+            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-link text-white">Logout</button>
+            </form>
         </div>
     </footer>
 

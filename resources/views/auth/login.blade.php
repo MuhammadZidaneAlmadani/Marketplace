@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Disperindag</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -29,13 +30,25 @@
         .login-container img {
             width: 80px;
             margin-bottom: 1rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .login-container h1 {
-            font-size: 24px;
-            color: #003366;
+        .logo-text {
+            font-family: 'Black Ops One', sans-serif; /* Gunakan font Black Ops One */
             font-weight: bold;
+            font-size: 2rem; /* Sesuaikan ukuran teks */
+            letter-spacing: 3.5px; /* Spasi antar huruf */
             margin-bottom: 1rem;
+        }
+
+        .logo-text .text-green {
+            color: #007b32; /* Warna hijau pertama */
+        }
+
+        .logo-text .text-darkgreen {
+            color: #004d26; /* Warna hijau lebih gelap */
         }
 
         .form-group {
@@ -75,23 +88,52 @@
         }
 
         .alert {
-            color: #721c24;
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
             padding: 0.75rem 1.25rem;
             border-radius: 5px;
             margin-bottom: 1rem;
             text-align: left;
         }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
+        <!-- Logo -->
         <img src="{{ asset('images/logo_disperindag.jpeg') }}" alt="Disperindag Logo">
-        <h1>DISPERINDAG</h1>
+        
+        <!-- Text di bawah logo -->
+        <div class="logo-text">
+            <span class="text-green">DISPE</span><span class="text-darkgreen">RINDAG</span>
+        </div>
 
+        <!-- Pesan Sukses -->
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <!-- Pesan Kesalahan -->
+        @if ($errors->has('login'))
+            <div class="alert alert-danger">
+                {{ $errors->first('login') }}
+            </div>
+        @endif
+
+        <!-- Daftar Kesalahan Validasi -->
         @if ($errors->any())
-            <div class="alert">
+            <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -100,6 +142,7 @@
             </div>
         @endif
 
+        <!-- Form Login -->
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group">

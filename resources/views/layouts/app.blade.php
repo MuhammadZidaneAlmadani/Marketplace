@@ -80,7 +80,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#">
-                    <img src="{{ asset('logo.png') }}" alt="Disperindag Logo">
+                    <img src="{{ asset('logo_disperindag.jpeg') }}" alt="Disperindag Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -98,10 +98,12 @@
                                 <a class="dropdown-item" href="#">Event</a>
                             </div>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/layanan') }}">Layanan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Hubungi Kami</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Layanan</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Hubungi Kami</a></li>
                     </ul>
-                </div>
+                </div>  
             </nav>
         </div>
     </header>
@@ -110,6 +112,66 @@
     <div class="container mt-5">
         @yield('content')
     </div>
+
+    <!-- Feature Section -->
+<section class="feature-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card p-4">
+                    <i class="fas fa-briefcase-medical"></i>
+                    <h3>Kasus Darurat</h3>
+                    <p>Kami siap mendukung usaha Anda dengan cepat...</p>
+                    <a href="{{ url('/kasus-darurat') }}" class="btn btn-success">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Jadwal Karyawan</h3>
+                    <p>Dengan manajemen jadwal yang efektif...</p>
+                    <a href="{{ url('/jadwal-karyawan') }}" class="btn btn-success">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4">
+                    <i class="fas fa-clock"></i>
+                    <h3>Jam Buka</h3>
+                    <p>Senin - Kamis 07:00 - 15:00...</p>
+                    <a href="{{ url('/jam-buka') }}" class="btn btn-success">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section class="news-section">
+    <div class="container">
+        <h3>KAMI MENYEDIAKAN INFORMASI</h3>
+        <p>Kami berkomitmen untuk mendukung pertumbuhan usaha Anda...</p>
+        <div class="row">
+            <div class="col-md-4 news-item">
+                <i class="fas fa-newspaper"></i>
+                <h5>Berita Pasar</h5>
+                <p>Kami siap memberikan dukungan cepat...</p>
+                <a href="{{ url('/berita-pasar') }}" class="btn btn-success">Pelajari Lebih Lanjut</a>
+            </div>
+            <div class="col-md-4 news-item">
+                <i class="fas fa-chart-line"></i>
+                <h5>Solusi Pemasaran Berkualitas</h5>
+                <p>Kami siap membuat Anda berkembang...</p>
+                <a href="{{ url('/solusi-pemasaran') }}" class="btn btn-success">Pelajari Lebih Lanjut</a>
+            </div>
+            <div class="col-md-4 news-item">
+                <i class="fas fa-users"></i>
+                <h5>Inovasi untuk Masyarakat</h5>
+                <p>Fokus untuk mendukung Anda...</p>
+                <a href="{{ url('/inovasi-masyarakat') }}" class="btn btn-success">Pelajari Lebih Lanjut</a>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Footer Section -->
     <footer>

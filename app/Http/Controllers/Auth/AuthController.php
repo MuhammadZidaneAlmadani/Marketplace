@@ -8,13 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Menampilkan form login
+    /**
+     * Menampilkan form login.
+     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Memproses login
+    /**
+     * Memproses login pengguna.
+     */
     public function login(Request $request)
     {
         // Validasi input
@@ -22,12 +26,16 @@ class AuthController extends Controller
             'username' => 'required|string|max:255',
             'password' => 'required|string',
             'remember' => 'nullable|boolean',
+        ], [
+            'username.required' => 'Admin',
+            'password.required' => 'Admin123',
         ]);
 
+        // Mengambil input login
         $credentials = $request->only('username', 'password');
         $remember = $request->boolean('remember');
 
-        // Autentikasi pengguna
+        // Coba autentikasi
         if (Auth::attempt($credentials, $remember)) {
             // Redirect berdasarkan role pengguna
             if (Auth::user()->role === 'admin') {
@@ -39,15 +47,16 @@ class AuthController extends Controller
 
         // Jika gagal login
         return redirect()->route('login')->withErrors([
-            'username' => 'Username atau password salah.',
+            'login' => 'Username atau password salah.',
         ]);
     }
 
-    // Logout dan arahkan ke halaman login
+    /**
+     * Logout dan arahkan ke halaman login.
+     */
     public function logout()
     {
         Auth::logout(); // Logout pengguna
         return redirect()->route('login')->with('status', 'Anda telah berhasil logout.');
     }
 }
-
