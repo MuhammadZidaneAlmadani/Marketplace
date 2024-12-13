@@ -110,7 +110,7 @@
 <body>
     <div class="login-container">
         <!-- Logo -->
-        <img src="{{ asset('images/logo_disperindag.jpeg') }}" alt="Disperindag Logo">
+        <img src="{{ asset('images/logo_disperindag.png') }}" alt="Disperindag Logo">
         
         <!-- Text di bawah logo -->
         <div class="logo-text">

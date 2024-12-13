@@ -9,10 +9,7 @@ use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
-<<<<<<< HEAD
 use App\Http\Controllers\TerasPasarController;
-=======
->>>>>>> ddaef81cabd30f29ff494ed02f43af3a58565c4b
 use App\Http\Middleware\IsAdmin;
 
 // -----------------------------------------
@@ -68,11 +65,8 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
     // Dashboard admin
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-<<<<<<< HEAD
     // Rute untuk mengelola pasar (admin)
-=======
     // Market management
->>>>>>> ddaef81cabd30f29ff494ed02f43af3a58565c4b
     Route::prefix('markets')->name('markets.admin.')->group(function () {
         Route::get('/', [MarketController::class, 'index'])->name('index'); // Menampilkan daftar pasar
         Route::get('/create', [MarketController::class, 'create'])->name('create'); // Menampilkan form tambah pasar
@@ -93,12 +87,8 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
         Route::delete('/{news}', [NewsController::class, 'destroy'])->name('destroy');
         Route::get('/{news}', [NewsController::class, 'show'])->name('show');
     });
-
-<<<<<<< HEAD
     // Rute untuk mengelola acara
-=======
     // Event management
->>>>>>> ddaef81cabd30f29ff494ed02f43af3a58565c4b
     Route::prefix('events')->name('events.admin.')->group(function () {
         Route::get('/', [EventController::class, 'index'])->name('index');
         Route::get('/create', [EventController::class, 'create'])->name('create');
@@ -119,8 +109,6 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
         Route::delete('/{terasPasar}', [TerasPasarController::class, 'destroy'])->name('destroy');
     });
 });
-<<<<<<< HEAD
-=======
 
 // -----------------------------------------
 // RESOURCE ROUTES
@@ -134,8 +122,10 @@ Route::resource('events', EventController::class)->except(['create', 'edit']);
 // RUTE LAINNYA
 // -----------------------------------------
 
+//dashboard untuk guest
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('guest.dashboard');
+
 Route::get('/layanan', [NewsController::class, 'index'])->name('layanan');
 Route::get('/hubungi-kami', [ContactController::class, 'index'])->name('hubungi-kami');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
->>>>>>> ddaef81cabd30f29ff494ed02f43af3a58565c4b
