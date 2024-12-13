@@ -11,6 +11,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TerasPasarController;
 use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\PasarController;
 
 // -----------------------------------------
 // RUTE UTAMA PENGUNJUNG
@@ -129,3 +130,6 @@ Route::get('/layanan', [NewsController::class, 'index'])->name('layanan');
 Route::get('/hubungi-kami', [ContactController::class, 'index'])->name('hubungi-kami');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
+
+//pasar_pengunjung
+Route::get('/pasar-pengunjung', [PasarController::class, 'index']);

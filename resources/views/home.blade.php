@@ -6,11 +6,11 @@
     <title>Beranda</title>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         header .navbar-brand img {
             max-height: 40px; /* Pastikan logo tidak terlalu besar */
             max-width: auto;
-            
         }
 
         .logo-text {
@@ -48,8 +48,13 @@
             text-align: center;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
+
+        .info-card i {
+            font-size: 2rem;
+            color: #282828;
+            margin-bottom: 10px;
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navbar -->
@@ -67,7 +72,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pasar</a>
+                        <a class="nav-link" href="pasar_pengunjung.html">Pasar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Berita</a>
@@ -85,7 +90,8 @@
 
     <!-- Hero Section -->
     <div class="text-center bg-light py-5" style="background-image: url('./images/banner.jpg'); background-size: cover; background-position: center;">
-        <h1 class="text-white">DINAS PERINDUSTRIAN DAN PERDAGANGAN KABUPATEN PAMEKASAN</h1>
+        <h1 class="text-white">DINAS PERINDUSTRIAN DAN PERDAGANGAN</h1>
+        <h1 class="text-white">KABUPATEN PAMEKASAN</h1>
         <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
     </div>
 
@@ -129,18 +135,21 @@
         <div class="row mt-4">
             <div class="col-md-4">
                 <div class="info-card">
+                    <i class="fas fa-newspaper"></i>
                     <h5>Berita Pasar</h5>
                     <p>Kami siap memberikan informasi cepat tentang situasi terkini di pasar.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="info-card">
+                    <i class="fas fa-chart-line"></i>
                     <h5>Solusi Pemasaran</h5>
                     <p>Kami fokus memberikan solusi untuk mendukung bisnis Anda berkembang.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="info-card">
+                    <i class="fas fa-users"></i>
                     <h5>Inovasi</h5>
                     <p>Kami terus berinovasi untuk memberikan layanan terbaik kepada masyarakat.</p>
                 </div>
