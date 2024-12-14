@@ -132,4 +132,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
 
 //pasar_pengunjung
-Route::get('/pasar-pengunjung', [PasarController::class, 'index']);
+Route::get('/pasar_pengunjung', [PasarController::class, 'pengunjung'])->name('pasar.pengunjung');

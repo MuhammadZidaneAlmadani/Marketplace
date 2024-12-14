@@ -2148,3 +2148,17 @@ video {
   }
 }
 
+.w-full {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.w-full:focus {
+  border-color: #38bdf8; /* Warna fokus */
+  outline: none;
+  box-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
+}

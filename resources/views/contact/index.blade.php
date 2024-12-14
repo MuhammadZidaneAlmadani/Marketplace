@@ -2,10 +2,10 @@
 
 @section('content')
 <!-- Header -->
-<header class="relative">
-    <img src="/images/Contact.png" alt="Hubungi Kami" class="w-full h-72 object-cover">
-    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <h1 class="text-4xl lg:text-6xl text-white font-extrabold">Hubungi Kami</h1>
+<header class="relative bg-cover bg-center h-72 flex items-center justify-center text-white" style="background-image: url('/images/Contact.png');">
+    <div class="text-center">
+        <h1 class="text-4xl lg:text-6xl font-extrabold">Hubungi Kami</h1>
+        <p class="mt-2 text-lg">Home &gt; Hubungi Kami</p>
     </div>
 </header>
 
@@ -27,10 +27,10 @@
         <div class="bg-white p-8 rounded-md shadow-lg">
             <h2 class="text-2xl font-bold mb-6">Hubungi Kami</h2>
 
-            <!-- Menampilkan pesan sukses setelah form berhasil disubmit -->
+            <!-- Pesan Sukses -->
             @if (session('success'))
-                <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
-                    {{ session('success') }}
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6" role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
                 </div>
             @endif
 
@@ -122,9 +122,9 @@
         <div>
             <h3 class="text-xl font-bold mb-4">Tautan Cepat</h3>
             <ul class="space-y-2">
-                <li><a href="{{ route('home') }}" class="hover:underline">Home</a></li>
-                <li><a href="{{ route('about') }}" class="hover:underline">Tentang Kami</a></li>
-                <li><a href="{{ route('services') }}" class="hover:underline">Layanan</a></li>
+                <a href="{{ route('pasar_pengunjung') }}">Link</a>
+                <a href="{{ route('Berita') }}">Berita</a>
+                <li><a href="{{ route('services') }}" class="hover:underline">Acara</a></li>
                 <li><a href="{{ route('contact.index') }}" class="hover:underline">Hubungi Kami</a></li>
             </ul>
         </div>

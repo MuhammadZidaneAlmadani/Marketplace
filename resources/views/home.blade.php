@@ -72,7 +72,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="pasar_pengunjung.html">Pasar</a>
+                        <a class="nav-link" href="{{ route('pasar_pengunjung') }}">Pasar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Berita</a>
@@ -81,7 +81,7 @@
                         <a class="nav-link" href="#">Acara</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Hubungi Kami</a>
+                        <a class="nav-link" href="{{ route('contact.index') }}">Hubungi Kami</a>
                     </li>
                 </ul>
             </div>
