@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('pengunjung.home')
+
+@section('title', $event->judul)
 
 @section('content')
 <div class="container">

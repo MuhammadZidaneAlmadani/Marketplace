@@ -5,6 +5,9 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\Pengunjung\MarketController as PengunjungMarketController;
+use App\Http\Controllers\Pengunjung\NewsController as PengunjungNewsController;
+use App\Http\Controllers\Pengunjung\EventController as PengunjungEventController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
@@ -20,22 +23,19 @@ use App\Http\Controllers\PasarController;
 // Halaman utama
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('guest.dashboard');
 
-// Rute untuk event
-Route::prefix('events')->group(function () {
-    Route::get('/', [EventController::class, 'index'])->name('events.index');
-    Route::get('/{event}', [EventController::class, 'show'])->name('events.show');
+Route::prefix('markets')->name('markets.')->group(function () {
+    Route::get('/', [PengunjungMarketController::class, 'index'])->name('index');
+    Route::get('/{market}', [PengunjungMarketController::class, 'show'])->name('show');
 });
 
-// Rute untuk market
-Route::prefix('markets')->group(function () {
-    Route::get('/', [MarketController::class, 'index'])->name('markets.index');
-    Route::get('/{market}', [MarketController::class, 'show'])->name('markets.show');
+Route::prefix('news')->name('news.')->group(function () {
+    Route::get('/', [PengunjungNewsController::class, 'index'])->name('index');
+    Route::get('/{news}', [PengunjungNewsController::class, 'show'])->name('show');
 });
 
-// Rute untuk news
-Route::prefix('news')->group(function () {
-    Route::get('/', [NewsController::class, 'index'])->name('news.index');
-    Route::get('/{news}', [NewsController::class, 'show'])->name('news.show');
+Route::prefix('events')->name('events.')->group(function () {
+    Route::get('/', [PengunjungEventController::class, 'index'])->name('index');
+    Route::get('/{event}', [PengunjungEventController::class, 'show'])->name('show');
 });
 
 // Informasi dan hubungi kami
@@ -130,6 +130,3 @@ Route::get('/layanan', [NewsController::class, 'index'])->name('layanan');
 Route::get('/hubungi-kami', [ContactController::class, 'index'])->name('hubungi-kami');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
-
-//pasar_pengunjung
-Route::get('/pasar_pengunjung', [PasarController::class, 'pengunjung'])->name('pasar.pengunjung');

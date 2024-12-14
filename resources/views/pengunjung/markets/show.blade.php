@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('pengunjung.home')
+
+@section('title', 'Detail Pasar')
 
 @section('content')
+<div class="container">
     <h2>Detail Pasar</h2>
 
     <p><strong>Nama Pasar:</strong> {{ $market->nama }}</p>
@@ -19,10 +22,7 @@
         <img src="{{ asset('storage/' . $market->foto_galeri) }}" alt="Foto Galeri {{ $market->nama }}" class="img-fluid">
     @endif
 
-    {{-- Debugging untuk memeriksa apakah koordinat ada --}}
-    <p><strong>Latitude:</strong> {{ $market->latitude ?? 'Tidak tersedia' }}</p>
-    <p><strong>Longitude:</strong> {{ $market->longitude ?? 'Tidak tersedia' }}</p>
-
+    {{-- Menampilkan peta menggunakan Leaflet jika koordinat tersedia --}}
     @if($market->latitude && $market->longitude)
         <h3>Lokasi di OpenStreetMap:</h3>
         <div id="map" style="width: 100%; height: 400px; margin-bottom: 15px;"></div>
@@ -49,5 +49,6 @@
         <p>Koordinat tidak tersedia untuk lokasi ini.</p>
     @endif
 
-    <a href="{{ route('markets.index') }}">Kembali ke Daftar Pasar</a>
+    <a href="{{ route('markets.index') }}" class="btn btn-secondary">Kembali ke Daftar Pasar</a>
+</div>
 @endsection
