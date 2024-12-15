@@ -5,38 +5,48 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\Pengunjung\MarketController as PengunjungMarketController;
-use App\Http\Controllers\Pengunjung\NewsController as PengunjungNewsController;
-use App\Http\Controllers\Pengunjung\EventController as PengunjungEventController;
 use App\Http\Controllers\InformasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TerasPasarController;
+use App\Http\Controllers\PasarPublikController;
+use App\Http\Controllers\BeritaPublikController;
+use App\Http\Controllers\AcaraPublikController;
+use App\Http\Controllers\TerasPasarPublikController;
 use App\Http\Middleware\IsAdmin;
-use App\Http\Controllers\PasarController;
 
 // -----------------------------------------
 // RUTE UTAMA PENGUNJUNG
 // -----------------------------------------
 
+// Halaman utama pengunjung
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Rute Pasar
+Route::get('/pasar', [PasarPublikController::class, 'index'])->name('pasar.index');
+Route::get('/pasar/{id}', [PasarPublikController::class, 'show'])->name('pasar.show');
+
+// Rute Berita
+Route::prefix('berita')->name('berita.')->group(function () {
+    Route::get('/', [BeritaPublikController::class, 'index'])->name('index');
+    Route::get('/{id}', [BeritaPublikController::class, 'show'])->name('show');
+});
+
+// Rute Acara
+Route::prefix('acara')->name('acara.')->group(function () {
+    Route::get('/', [AcaraPublikController::class, 'index'])->name('index');
+    Route::get('/{id}', [AcaraPublikController::class, 'show'])->name('show');
+});
+
+// Rute Teras Pasar
+Route::prefix('teras-pasar')->name('teras-pasar.')->group(function () {
+    Route::get('/', [TerasPasarPublikController::class, 'index'])->name('index');
+    Route::get('/{id}', [TerasPasarPublikController::class, 'show'])->name('show');
+});
+
 // Halaman utama
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('guest.dashboard');
-
-Route::prefix('markets')->name('markets.')->group(function () {
-    Route::get('/', [PengunjungMarketController::class, 'index'])->name('index');
-    Route::get('/{market}', [PengunjungMarketController::class, 'show'])->name('show');
-});
-
-Route::prefix('news')->name('news.')->group(function () {
-    Route::get('/', [PengunjungNewsController::class, 'index'])->name('index');
-    Route::get('/{news}', [PengunjungNewsController::class, 'show'])->name('show');
-});
-
-Route::prefix('events')->name('events.')->group(function () {
-    Route::get('/', [PengunjungEventController::class, 'index'])->name('index');
-    Route::get('/{event}', [PengunjungEventController::class, 'show'])->name('show');
-});
 
 // Informasi dan hubungi kami
 Route::get('/informasi', [InformasiController::class, 'index'])->name('informasi.index');

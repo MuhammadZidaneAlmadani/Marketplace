@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
+    // Ambil semua berita untuk pengunjung
+    public function getAllNews()
+    {
+        return News::all();  // Mengambil semua berita
+    }
+
+    // Ambil berita berdasarkan ID untuk pengunjung
+    public function getNewsById($id)
+    {
+        return News::findOrFail($id);  // Menemukan berita berdasarkan ID
+    }
+
     public function index()
     {
         $news = News::paginate(10);

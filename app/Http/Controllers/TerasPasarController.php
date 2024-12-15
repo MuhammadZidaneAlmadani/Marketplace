@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Storage; // Pastikan Storage diimpor
 
 class TerasPasarController extends Controller
 {
+    public function getAllTerasPasar()
+    {
+        return TerasPasar::all();  // Mengambil semua Teras Pasar
+    }
+
+    // Ambil Teras Pasar berdasarkan ID untuk pengunjung
+    public function getTerasPasarById($id)
+    {
+        return TerasPasar::findOrFail($id);  // Menemukan Teras Pasar berdasarkan ID
+    }
     public function index()
     {
         $terasPasar = TerasPasar::paginate(10);

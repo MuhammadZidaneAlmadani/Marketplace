@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
+    public function getAllEvents()
+    {
+        return Event::all();  // Mengambil semua acara
+    }
+
+    // Ambil acara berdasarkan ID untuk pengunjung
+    public function getEventById($id)
+    {
+        return Event::findOrFail($id);  // Menemukan acara berdasarkan ID
+    }
     public function index()
     {
         $events = Event::paginate(10);

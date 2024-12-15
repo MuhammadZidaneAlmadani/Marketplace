@@ -8,6 +8,16 @@ use Illuminate\Support\Facades\Storage;
 
 class MarketController extends Controller
 {
+    public function getAllMarkets()
+    {
+        return Market::all();  // Mengambil semua data pasar
+    }
+
+    // Ambil pasar berdasarkan ID untuk pengunjung
+    public function getMarketById($id)
+    {
+        return Market::findOrFail($id);  // Menemukan pasar berdasarkan ID
+    }
     public function index(Request $request)
     {
         $query = $request->input('search');
