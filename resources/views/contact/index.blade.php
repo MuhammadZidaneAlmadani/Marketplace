@@ -1,147 +1,230 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .logo-text {
+            font-family: 'Black Ops One', sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            letter-spacing: 3.5px;
+        }
 
-@section('content')
-<!-- Header -->
-<header class="relative bg-cover bg-center h-72 flex items-center justify-center text-white" style="background-image: url('/images/Contact.png');">
-    <div class="text-center">
-        <h1 class="text-4xl lg:text-6xl font-extrabold">Hubungi Kami</h1>
-        <p class="mt-2 text-lg">Home &gt; Hubungi Kami</p>
+        .logo-text .text-green {
+            color: #007b32; /* Hijau */
+        }
+
+        .logo-text .text-darkgreen {
+            color: #7d7e7e; /* Abu-abu gelap */
+        }
+
+        .info-section {
+            padding: 50px 0;
+        }
+
+        .info-section h2 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+
+        .info-box {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box i {
+            font-size: 2.5rem;
+            color: #343a40;
+        }
+
+        footer {
+            background-color: #343a40; /* Warna gelap untuk footer */
+            color: white;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer p a {
+            color: #007b32; /* Hijau */
+        }
+
+        footer p a:hover {
+            color: #7d7e7e; /* Abu-abu gelap */
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px; /* Ukuran logo */
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('images/logo_disperindag.png') }}" alt="Logo">
+                <span class="logo-text">
+                    <span class="text-green">DISPE</span><span class="text-darkgreen">RINDAG</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('pasar.index') }}">Pasar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('berita.index') }}">Berita</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('acara.index') }}">Acara</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Hubungi Kami</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-200 py-6">
+        <div class="container text-center">
+            <h1 class="text-3xl font-bold">Contact Us</h1>
+            <p class="text-gray-600">Home &gt; Contact Us</p>
+        </div>
     </div>
-</header>
 
-<!-- Konten -->
-<main class="py-12">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4 lg:px-12">
-        <!-- Kolom Peta -->
-        <div>
-            <iframe
-                class="w-full h-72 rounded-md shadow-lg"
-                src="https://www.google.com/maps/embed?pb=YOUR_GOOGLE_MAPS_EMBED_URL"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+    <!-- Contact Section -->
+    <div class="container py-10 flex flex-wrap">
+        <!-- Map -->
+        <div class="w-full lg:w-1/2 px-4">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.583674915243!2d113.456123!3d-7.160003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e4ec17a1f123%3A0x1234567890abcdef!2sPamekasan!5e0!3m2!1sen!2sid!4v1234567890123" 
+                width="100%" 
+                height="400" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"></iframe>
         </div>
 
-        <!-- Kolom Form -->
-        <div class="bg-white p-8 rounded-md shadow-lg">
+        <!-- Contact Form -->
+        <div class="w-full lg:w-1/2 px-4">
             <h2 class="text-2xl font-bold mb-6">Hubungi Kami</h2>
-
-            <!-- Pesan Sukses -->
-            @if (session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6" role="alert">
-                    <span class="block sm:inline">{{ session('success') }}</span>
-                </div>
-            @endif
-
-            <!-- Form Kontak -->
-            <form action="{{ route('contact.submit') }}" method="POST">
-                @csrf
+            <form action="#" method="POST" class="bg-white shadow-lg rounded-lg p-6">
                 <div class="mb-4">
-                    <label for="first_name" class="block text-sm font-medium text-gray-700">Nama Depan *</label>
-                    <input
-                        type="text"
-                        id="first_name"
-                        name="first_name"
-                        required
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-200"
-                    >
+                    <label for="first-name" class="block text-sm font-semibold">First Name *</label>
+                    <input type="text" id="first-name" name="first_name" required class="w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                 </div>
-
                 <div class="mb-4">
-                    <label for="last_name" class="block text-sm font-medium text-gray-700">Nama Belakang *</label>
-                    <input
-                        type="text"
-                        id="last_name"
-                        name="last_name"
-                        required
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-200"
-                    >
+                    <label for="last-name" class="block text-sm font-semibold">Last Name *</label>
+                    <input type="text" id="last-name" name="last_name" required class="w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                 </div>
-
                 <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email *</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-200"
-                    >
+                    <label for="email" class="block text-sm font-semibold">Email *</label>
+                    <input type="email" id="email" name="email" required class="w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                 </div>
-
                 <div class="mb-4">
-                    <label for="phone" class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
-                    <input
-                        type="text"
-                        id="phone"
-                        name="phone"
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-200"
-                    >
+                    <label for="phone" class="block text-sm font-semibold">Phone</label>
+                    <input type="tel" id="phone" name="phone" class="w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
                 </div>
-
                 <div class="mb-4">
-                    <label for="message" class="block text-sm font-medium text-gray-700">Pesan</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="4"
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-green-200"
-                    ></textarea>
+                    <label for="country" class="block text-sm font-semibold">Country of Residence</label>
+                    <select id="country" name="country" class="w-full border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                        <option value="">Select...</option>
+                        <option value="ID">Indonesia</option>
+                        <option value="US">United States</option>
+                    </select>
                 </div>
-
-                <button
-                    type="submit"
-                    class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-200"
-                >
-                    Kirim
-                </button>
+                <button type="submit" class="w-full bg-green-500 text-white py-2 px-4 rounded-lg">Contact Us</button>
             </form>
         </div>
     </div>
-</main>
 
-<!-- Footer -->
-<footer class="bg-green-500 text-white py-12">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 lg:px-12">
-        <!-- Kolom Tentang Kami -->
-        <div>
-            <h3 class="text-xl font-bold mb-4">Tentang Kami</h3>
-            <p class="text-sm leading-relaxed">
-                Kami hadir untuk mendorong kemajuan usaha Anda dengan solusi pemasaran berkualitas.
-            </p>
-            <div class="flex space-x-4 mt-4">
-                <a href="#"><img src="/icons/facebook.webp" alt="Facebook" class="w-6 h-6"></a>
-                <a href="#"><img src="/icons/twitter.png" alt="Twitter" class="w-6 h-6"></a>
-                <a href="#"><img src="/icons/instagram.png" alt="Instagram" class="w-6 h-6"></a>
-                <a href="#"><img src="/icons/youtube.png" alt="YouTube" class="w-6 h-6"></a>
+    <!-- Informasi Section -->
+    <section class="info-section text-center">
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="fas fa-newspaper"></i>
+                        <p>+(62) 1234 56789<br>info@company.com</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="fas fa-bullhorn"></i>
+                        <p>Jl. Raya Pamekasan-Sumenep<br>Kec.Pademawu Kabupaten Pamekasan</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="fas fa-handshake"></i>
+                        <p>Senin - Kamis   07.00 - 15.00<br>Jum’at   07.00 - 13.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+            <div class="space-y-4">
+                <h3 class="text-white font-bold">Tentang Kami</h3>
+                <p>kami hadir untuk mendorong<br>usaha Anda dengan<br>Pemasaran Berkualitas<br>kami adalah memberikan<br>cepat dan inovatif</p>
+                <!-- Social Media Icons ditempatkan di sini -->
+                <div class="flex justify-center md:justify-start mt-4 space-x-4">
+                <a href="#" target="_blank" aria-label="Facebook">
+                    <img src="{{ asset('images/facebook.png') }}" alt="Facebook" class="w-6 h-6">
+                </a>
+                <a href="#" target="_blank" aria-label="Twitter">
+                    <img src="{{ asset('images/twitter.png') }}" alt="Twitter" class="w-6 h-6">
+                </a>
+                <a href="#" target="_blank" aria-label="Instagram">
+                    <img src="{{ asset('images/instagram.png') }}" alt="Instagram" class="w-6 h-6">
+                </a>
+            </div>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-white font-bold">Tautan Cepat</h3>
+                <ul>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('pasar.index') }}">Pasar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('berita.index') }}">Berita</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('acara.index') }}">Acara</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-white font-bold">Jam Buka</h3>
+                <p>Senin - Kamis: 07.00 - 15.00<br>Jumat: 07.00 - 13.00</p>
             </div>
         </div>
 
-        <!-- Kolom Tautan Cepat -->
-        <div>
-            <h3 class="text-xl font-bold mb-4">Tautan Cepat</h3>
-            <ul class="space-y-2">
-                <a href="{{ route('pasar_pengunjung') }}">Link</a>
-                <a href="{{ route('Berita') }}">Berita</a>
-                <li><a href="{{ route('services') }}" class="hover:underline">Acara</a></li>
-                <li><a href="{{ route('contact.index') }}" class="hover:underline">Hubungi Kami</a></li>
-            </ul>
+        <div class="text-center mt-8">
+            <p>&copy; 2024 Disperindag | All Rights Reserved</p>
         </div>
+    </footer>
 
-        <!-- Kolom Jam Buka -->
-        <div>
-            <h3 class="text-xl font-bold mb-4">Jam Buka</h3>
-            <ul class="text-sm">
-                <li>Senin - Kamis: 07:00 - 15:00</li>
-                <li>Jumat: 07:00 - 13:00</li>
-                <li>Sabtu - Minggu: Tutup</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="text-center text-sm mt-8">
-        &copy; Disperindag 2024 | All Rights Reserved by R2
-    </div>
-</footer>
-@endsection
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

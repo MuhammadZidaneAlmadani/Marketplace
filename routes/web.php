@@ -29,9 +29,10 @@ Route::get('/pasar/{id}', [PasarPublikController::class, 'show'])->name('pasar.s
 
 // Rute Berita
 Route::prefix('berita')->name('berita.')->group(function () {
-    Route::get('/', [BeritaPublikController::class, 'index'])->name('index');
-    Route::get('/{id}', [BeritaPublikController::class, 'show'])->name('show');
+    Route::get('/', [BeritaPublikController::class, 'index'])->name('berita.index');
+    Route::get('/berita{id}', [BeritaPublikController::class, 'show'])->name('berita.show');
 });
+
 
 // Rute Acara
 Route::prefix('acara')->name('acara.')->group(function () {

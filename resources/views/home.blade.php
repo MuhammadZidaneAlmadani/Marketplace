@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Beranda - DISPERINDAG')</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Black+Ops+One&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -13,58 +13,83 @@
             background-color: #f8f9fa;
         }
 
-        /* Navbar Styling */
         .navbar-brand img {
             height: 40px;
         }
 
-        .navbar-dark .nav-link {
-            color: white !important;
+        .logo-text {
+            font-family: 'Black Ops One', sans-serif; /* Gunakan font Black Ops One */
+            font-weight: bold;
+            font-size: 2ch; /* Sesuaikan ukuran teks */
+            letter-spacing: 3.5px; /* Spasi antar huruf */
         }
 
-        /* Hero Section */
+        .logo-text .text-green {
+            color: #007b32; /* Warna hijau pertama */
+        }
+
+        .logo-text .text-darkgreen {
+            color: #7d7e7e; /* Warna hijau lebih gelap */
+        }
+
         .hero {
             background: url('{{ asset('images/banner.jpg') }}') no-repeat center center/cover;
             color: white;
-            padding: 150px 0;
+            padding: 120px 0;
             text-align: center;
         }
 
         .hero h1 {
             font-weight: 600;
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
-        /* Informasi Section */
+        .hero p {
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .carousel-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .carousel-item h5 {
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .carousel-item p {
+            color: #6c757d;
+        }
+
         .info-section {
             padding: 50px 0;
         }
 
-        .info-section .info-card {
-            text-align: center;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .info-section .info-card i {
-            font-size: 2rem;
-            color: #007b32;
-        }
-
-        /* Company Profile Section */
-        .company-profile {
-            background-color: #007b32;
-            color: white;
-            padding: 60px 20px;
-        }
-
-        .company-profile h2 {
+        .info-section h2 {
             font-weight: 600;
+            margin-bottom: 20px;
         }
 
-        /* Footer */
+        .info-section p {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+
+        .info-box {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box i {
+            font-size: 2.5rem;
+            color: #343a40;
+        }
+
         footer {
             background-color: #343a40;
             color: white;
@@ -78,8 +103,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="{{ asset('images/logo_disperindag.png') }}" alt="Logo Disperindag">
-                <span>DISPERINDAG</span>
+                <img src="{{ asset('images/logo_disperindag.png') }}" alt="Logo">
+                <span class="logo-text">
+                    <span class="text-green">DISPE</span><span class="text-darkgreen">RINDAG</span>
+                </span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -89,7 +116,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('pasar.index') }}">Pasar</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('berita.index') }}">Berita</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('acara.index') }}">Acara</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Teras Pasar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Hubungi Kami</a></li>
                 </ul>
             </div>
         </div>
@@ -98,58 +125,83 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>DINAS PERINDUSTRIAN DAN PERDAGANGAN</h1>
-            <h3>KABUPATEN PAMEKASAN</h3>
-            <p>Mendukung pertumbuhan ekonomi melalui pelayanan terbaik dan inovatif.</p>
+            <h1>DINAS PERINDUSTRIAN DAN PERDAGANGAN KABUPATEN PAMEKASAN</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </div>
     </section>
+
+    <!-- Carousel Section -->
+    <div id="infoCarousel" class="carousel slide container my-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="info-box">
+                    <h5>Kasus Darurat</h5>
+                    <p>Kami siap mendukung usaha Anda dengan cepat, bahkan dalam Kasus Darurat.</p>
+                    <a href="#" class="btn btn-primary">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="info-box">
+                    <h5>Jadwal Karyawan</h5>
+                    <p>Dengan manajemen jadwal yang efektif, layanan optimal untuk Anda.</p>
+                    <a href="#" class="btn btn-primary">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="info-box">
+                    <h5>Jam Buka</h5>
+                    <p>Senin-Kamis: 07:00-15:00, Jumat: 07:00-13:00</p>
+                    <a href="#" class="btn btn-primary">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#infoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#infoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
 
     <!-- Informasi Section -->
-    <section class="info-section container text-center mt-5">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="info-card">
-                    <i class="fas fa-building"></i>
-                    <h5 class="mt-2">Manajemen Pasar</h5>
-                    <p>Mengelola pasar dengan profesional untuk mendukung kegiatan ekonomi daerah.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="info-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h5 class="mt-2">Layanan Pemasaran</h5>
-                    <p>Memberikan layanan pemasaran terbaik untuk perkembangan usaha Anda.</p>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="info-card">
-                    <i class="fas fa-users"></i>
-                    <h5 class="mt-2">Kolaborasi</h5>
-                    <p>Memfasilitasi kerja sama antara pelaku usaha dan pemerintah.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Company Profile Section -->
-    <section class="company-profile text-center">
+    <section class="info-section text-center">
         <div class="container">
-            <h2>Tentang Kami</h2>
-            <p>
-                DISPERINDAG Kabupaten Pamekasan bertugas dalam mengelola pasar dan industri perdagangan
-                dengan tujuan mendorong perekonomian daerah melalui inovasi dan kolaborasi bersama masyarakat.
-            </p>
-            <a href="{{ route('pasar.index') }}" class="btn btn-light mt-3">Jelajahi Pasar Kami</a>
+            <h2>Kami Menyediakan Informasi</h2>
+            <p>Kami berkomitmen untuk mendukung pertumbuhan usaha Anda melalui strategi pemasaran yang efektif.</p>
+            <p>dengan menyediakan layanan dan peluang terbaik untuk memajukan bisnis Anda</p>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="fas fa-newspaper"></i>
+                        <h5>Berita Pasar</h5>
+                        <p>Kami memberikan berita terkini untuk mendukung perkembangan usaha Anda.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="fas fa-bullhorn"></i>
+                        <h5>Solusi Berkualitas</h5>
+                        <p>Kami memastikan solusi pemasaran terbaik untuk Anda.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-box">
+                        <i class="fas fa-handshake"></i>
+                        <h5>Inovasi untuk Masyarakat</h5>
+                        <p>Kami fokus memberikan inovasi terbaik dalam layanan.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-
-
+    
     <!-- Footer -->
-    <footer>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
         <p>&copy; 2024 DISPERINDAG KABUPATEN PAMEKASAN</p>
+        <p>Alamat: Jl. Urip Sumoharjo No.2, Sumenep, Jawa Timur</p>
     </footer>
 
-    <!-- Scripts -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
