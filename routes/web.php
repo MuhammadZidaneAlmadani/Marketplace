@@ -71,7 +71,6 @@ Route::middleware('auth')->group(function () {
 // -----------------------------------------
 // RUTE ADMIN (Hanya untuk Admin)
 // -----------------------------------------
-
 Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () {
     // Dashboard admin
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -90,25 +89,27 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
 
     // News management
     Route::prefix('news')->name('news.admin.')->group(function () {
-        Route::get('/', [NewsController::class, 'index'])->name('index');
-        Route::get('/create', [NewsController::class, 'create'])->name('create');
-        Route::post('/', [NewsController::class, 'store'])->name('store');
-        Route::get('/{news}/edit', [NewsController::class, 'edit'])->name('edit');
-        Route::put('/{news}', [NewsController::class, 'update'])->name('update');
-        Route::delete('/{news}', [NewsController::class, 'destroy'])->name('destroy');
-        Route::get('/{news}', [NewsController::class, 'show'])->name('show');
+        Route::get('/', [NewsController::class, 'index'])->name('index'); // news.admin.index
+        Route::get('/create', [NewsController::class, 'create'])->name('create'); // news.admin.create
+        Route::post('/', [NewsController::class, 'store'])->name('store'); // news.admin.store
+        Route::get('/{news}', [NewsController::class, 'show'])->name('show'); // news.admin.show
+        Route::get('/{news}/edit', [NewsController::class, 'edit'])->name('edit'); // news.admin.edit
+        Route::put('/{news}', [NewsController::class, 'update'])->name('update'); // news.admin.update
+        Route::delete('/{news}', [NewsController::class, 'destroy'])->name('destroy'); // news.admin.destroy
     });
+
     // Rute untuk mengelola acara
     // Event management
     Route::prefix('events')->name('events.admin.')->group(function () {
-        Route::get('/', [EventController::class, 'index'])->name('index');
-        Route::get('/create', [EventController::class, 'create'])->name('create');
-        Route::post('/', [EventController::class, 'store'])->name('store');
-        Route::get('/{event}/edit', [EventController::class, 'edit'])->name('edit');
-        Route::put('/{event}', [EventController::class, 'update'])->name('update');
-        Route::delete('/{event}', [EventController::class, 'destroy'])->name('destroy');
-        Route::get('/{event}', [EventController::class, 'show'])->name('show');
+        Route::get('/', [EventController::class, 'index'])->name('index'); // events.admin.index
+        Route::get('/create', [EventController::class, 'create'])->name('create'); // events.admin.create
+        Route::post('/', [EventController::class, 'store'])->name('store'); // events.admin.store
+        Route::get('/{event}', [EventController::class, 'show'])->name('show'); // events.admin.show
+        Route::get('/{event}/edit', [EventController::class, 'edit'])->name('edit'); // events.admin.edit
+        Route::put('/{event}', [EventController::class, 'update'])->name('update'); // events.admin.update
+        Route::delete('/{event}', [EventController::class, 'destroy'])->name('destroy'); // events.admin.destroy
     });
+
 
     Route::prefix('admin/teras-pasar')->name('teras-pasar.admin.')->middleware(['auth', \App\Http\Middleware\IsAdmin::class])->group(function () {
         Route::get('/', [TerasPasarController::class, 'index'])->name('index');
