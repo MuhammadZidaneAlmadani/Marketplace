@@ -89,7 +89,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('pasar.index') }}">Pasar</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('berita.index') }}">Berita</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('acara.index') }}">Acara</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Teras Pasar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('teras-pasar.index') }}">Teras Pasar</a></li>
                 </ul>
             </div>
         </div>

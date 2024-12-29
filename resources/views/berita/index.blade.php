@@ -108,15 +108,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{route ('home')}}">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('pasar.index') }}">Pasar</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('berita.index') }}">Berita</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('acara.index') }}">Acara</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Hubungi Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('teras-pasar.index') }}">Teras Pasar</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
     <div class="container mt-4">
         <h2 class="text-center mb-4">Daftar Berita</h2>
         @if($berita->isEmpty()) <!-- Gunakan $berita sesuai controller -->

@@ -18,13 +18,13 @@ class TerasPasarPublikController extends Controller
     public function index()
     {
         $terasPasar = $this->terasPasarController->getAllTerasPasar();
-        return view('teras_pasar.index', compact('terasPasar'));
+        return view('teraspasar.index', compact('terasPasar'));
     }
 
     // Menampilkan detail teras pasar
     public function show($id)
     {
         $terasPasar = $this->terasPasarController->getTerasPasarById($id);
-        return view('teras_pasar.detail', compact('terasPasar'));
+        return view('teraspasar.show', compact('terasPasar'));
     }
 }

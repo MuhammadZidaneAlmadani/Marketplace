@@ -25,6 +25,6 @@ class BeritaPublikController extends Controller
     public function show($id)
     {
         $berita = $this->newsController->getNewsById($id); // Mengambil detail data dari NewsController
-        return view('berita.detail', compact('berita'));
+        return view('berita.show', compact('berita'));
     }
 }

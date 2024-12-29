@@ -25,6 +25,6 @@ class AcaraPublikController extends Controller
     public function show($id)
     {
         $acara = $this->eventController->getEventById($id); // Mengambil detail data dari EventController
-        return view('acara.detail', compact('acara'));
+        return view('acara.show', compact('acara'));
     }
 }
