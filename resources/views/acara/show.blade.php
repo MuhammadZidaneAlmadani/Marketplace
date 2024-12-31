@@ -120,7 +120,7 @@
 
     <div class="container mt-4">
         <h2 class="text-center mb-4">{{ $acara->judul }}</h2>
-        <p class="text-muted">{{ \Carbon\Carbon::parse($event->tanggal_acara)->format('d M Y') }}</p>
+        <p class="text-muted">{{ \Carbon\Carbon::parse($acara->tanggal_acara)->format('d M Y') }}</p>
         <div>
             @if($acara->image)
                 <img src="{{ asset('storage/' . $acara->image) }}" class="img-fluid" alt="{{ $acara->judul }}">
@@ -131,6 +131,7 @@
         <p class="mt-4">{{ $acara->deskripsi }}</p>
         <a href="{{ route('acara.index') }}" class="btn btn-primary mt-4">Kembali ke Daftar Acara</a>
     </div>
+
 
 
 
