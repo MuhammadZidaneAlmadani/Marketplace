@@ -11,6 +11,9 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* Navbar Styling */
@@ -70,6 +73,7 @@
             color: white;
             padding: 20px 0;
             text-align: center;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -124,5 +128,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
