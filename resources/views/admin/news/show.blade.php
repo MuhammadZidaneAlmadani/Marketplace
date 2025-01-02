@@ -13,8 +13,8 @@
 
     @auth
         @if(Auth::user()->role == 'admin')
-            <a href="{{ route('news.edit', $news->id) }}" class="btn btn-warning">Edit</a>
-            <form action="{{ route('news.destroy', $news->id) }}" method="POST" style="display:inline;">
+            <a href="{{ route('news.admin.edit', $news->id) }}" class="btn btn-warning">Edit</a>
+            <form action="{{ route('news.admin.destroy', $news->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Hapus</button>
@@ -22,6 +22,6 @@
         @endif
     @endauth
 
-    <a href="{{ route('news.index') }}" class="btn btn-secondary">Kembali</a>
+    <a href="{{ route('news.admin.index') }}" class="btn btn-secondary">Kembali</a>
 </div>
 @endsection
